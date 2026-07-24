@@ -289,6 +289,51 @@
             </div>
         </header>
 
+        <!-- Experiment 2 Record Card -->
+        <section class="card">
+            <div class="card-header-row">
+                <h2 class="card-title">
+                    <span>📝</span> Experiment No. 2 — Working with HTML5 Form and Media Elements
+                </h2>
+                <span class="badge-tag" style="background-color: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.3);">EX 2 RECORD READY</span>
+            </div>
+
+            <!-- Lab Record Sheet Format Table -->
+            <table class="record-table">
+                <tr>
+                    <th>Ex. No. 2</th>
+                    <td><strong>Title:</strong> WORKING WITH HTML5 FORM AND MEDIA ELEMENTS</td>
+                </tr>
+                <tr>
+                    <th>Date of Exercise</th>
+                    <td>24 July 2026</td>
+                </tr>
+                <tr>
+                    <th>GitHub Host Link</th>
+                    <td>
+                        <div class="host-link-box">
+                            <span id="exp2Link">https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html</span>
+                            <button class="copy-btn" onclick="copyLink('exp2Link')">Copy Link</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="aim-box" style="border-left-color: var(--accent-green);">
+                <h4 style="color: #34d399;">Aim:</h4>
+                <p>To build a website that conforms to HTML5 standards incorporating document structure, text formatting, images, anchors, tables, form controls (`<form>`, `<input>`, `<select>`, `<textarea>`, `<fieldset>`, `<legend>`, `<progress>`), and HTML5 media elements (`<audio>`, `<video>`, `<embed>`, `<iframe>`).</p>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
+                <a href="./24_July_Exp_2/exercise1.html" class="btn-link" style="background-color: var(--accent-green);">
+                    <span>🚀 Open Exp 2 Live Website</span>
+                </a>
+                <a href="https://github.com/jinto-joseph/WEB_TECH_LAB/tree/master/24_July_Exp_2#readme" target="_blank" class="btn-link" style="background-color: #475569;">
+                    <span>📖 View Exp 2 Documentation ↗</span>
+                </a>
+            </div>
+        </section>
+
         <!-- Experiment 1 Record Card -->
         <section class="card">
             <div class="card-header-row">
@@ -324,14 +369,6 @@
                 <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling (`style="..."`), semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
             </div>
 
-            <div class="aim-box" style="border-left-color: var(--accent-green); margin-top: 12px;">
-                <h4 style="color: #34d399;">Direct Scenario Host Link (Ex 12):</h4>
-                <div class="host-link-box" style="margin-top: 6px;">
-                    <span id="scenarioLink">https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</span>
-                    <button class="copy-btn" style="background-color: var(--accent-green);" onclick="copyLink('scenarioLink')">Copy Link</button>
-                </div>
-            </div>
-
             <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
                 <a href="./17_July_Exp_1/index.html" class="btn-link">
                     <span>🚀 Launch Interactive Lab Hub</span>
@@ -340,7 +377,7 @@
                     <span>🏢 Open Infosys Scenario (Inline Styles)</span>
                 </a>
                 <a href="https://github.com/jinto-joseph/WEB_TECH_LAB/tree/master/17_July_Exp_1#readme" target="_blank" class="btn-link" style="background-color: #475569;">
-                    <span>📖 View Documentation ↗</span>
+                    <span>📖 View Exp 1 Documentation ↗</span>
                 </a>
             </div>
         </section>
@@ -363,7 +400,7 @@
                     <div class="step-num">1</div>
                     <div class="step-text">
                         <strong>Create a folder for the new experiment:</strong><br>
-                        Create a folder like <code>Exp_2</code> or <code>24_July_Exp_2</code> inside your <code>WEB_TECH_LAB</code> project directory and add your exercise HTML files inside it.
+                        Create a folder like <code>Exp_3</code> inside your <code>WEB_TECH_LAB</code> project directory and add your exercise HTML files inside it.
                     </div>
                 </li>
                 <li class="step-item">
@@ -373,7 +410,7 @@
                         Run these 3 commands in VS Code Terminal:
                         <div style="background-color: #090d16; padding: 8px 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 13px; color: #38bdf8;">
                             git add .<br>
-                            git commit -m "Added Experiment 2"<br>
+                            git commit -m "Added Experiment 3"<br>
                             git push origin master
                         </div>
                     </div>
@@ -383,7 +420,7 @@
                     <div class="step-text">
                         <strong>Your new experiment URL is automatically live!</strong><br>
                         GitHub Pages will automatically publish it at:<br>
-                        <code style="color: #34d399;">https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_2/</code>
+                        <code style="color: #34d399;">https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_3/</code>
                     </div>
                 </li>
             </ol>
@@ -401,10 +438,10 @@
             if (window.location.hostname.includes("github.io")) {
                 const baseUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, "");
                 const exp1Url = baseUrl + "/17_July_Exp_1/index.html";
-                const scenarioUrl = baseUrl + "/17_July_Exp_1/Scenario.html";
+                const exp2Url = baseUrl + "/24_July_Exp_2/exercise1.html";
                 
                 document.getElementById("exp1Link").innerText = exp1Url;
-                document.getElementById("scenarioLink").innerText = scenarioUrl;
+                document.getElementById("exp2Link").innerText = exp2Url;
             }
         });
 

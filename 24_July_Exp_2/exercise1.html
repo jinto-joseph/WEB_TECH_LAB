@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex.No: 02 - Working with HTML5 Form and Media Elements</title>
+    <style>
+        :root {
+            --primary-color: #2b5797;
+            --border-color: #cccccc;
+            --bg-light: #f9f9f9;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 960px;
+            background-color: #ffffff;
+            border: 1px solid #b5b5b5;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 140px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            color: #111111;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #551a8b;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .search-box input[type="search"] {
+            padding: 4px 8px;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+        }
+
+        /* Top Grid: Skills Progress & Media Video */
+        .grid-top {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-item label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        progress {
+            width: 100%;
+            height: 18px;
+            accent-color: #5bb75b;
+        }
+
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        video {
+            width: 100%;
+            max-height: 280px;
+            border: 1px solid #ccc;
+            background-color: #000000;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Form Section: Side-by-side Fieldsets */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        fieldset {
+            border: 1px solid #999999;
+            padding: 15px;
+            border-radius: 2px;
+            background-color: #ffffff;
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 6px;
+            color: #222222;
+            font-size: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .form-group label {
+            width: 120px;
+            font-weight: normal;
+            color: #222222;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="url"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            padding: 4px 6px;
+            border: 1px solid #767676;
+            border-radius: 2px;
+            font-size: 13px;
+        }
+
+        .required-star {
+            color: black;
+            margin-left: 4px;
+            font-weight: bold;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .submit-btn {
+            background-color: #e1e1e1;
+            border: 1px solid #767676;
+            padding: 4px 16px;
+            cursor: pointer;
+            border-radius: 2px;
+            font-size: 13px;
+        }
+
+        .submit-btn:hover {
+            background-color: #d0d0d0;
+        }
+
+        /* Bottom Section: Embed PDF & Google Map Iframe */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .embed-box, .iframe-box {
+            border: 1px solid #ccc;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        iframe, embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer Section */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            font-size: 13px;
+            color: #333333;
+        }
+
+        .footer p {
+            margin-bottom: 4px;
+        }
+
+        /* Table Example Section (for table requirement) */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid #ccc;
+            padding: 4px 8px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HTML Comment: Experiment 02 - Working with HTML5 Form and Media Elements -->
+    <div class="wrapper">
+        
+        <!-- Header Section -->
+        <header class="header">
+            <!-- Image Element -->
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='140' viewBox='0 0 120 140'><rect width='100%' height='100%' fill='%23f2d6c9'/><circle cx='60' cy='50' r='30' fill='%23e0a38b'/><path d='M20,130 Q60,80 100,130 Z' fill='%23c86b59'/><circle cx='60' cy='45' r='24' fill='%23fce2d6'/><path d='M40,25 C45,10 75,10 80,25 C85,40 35,40 40,25 Z' fill='%23a33822'/></svg>" alt="Ms. Mariah Caraiban Profile Photo" class="profile-img">
+            <h1>Ms.Mariah Caraiban</h1>
+        </header>
+
+        <!-- Navigation Bar with Anchor Links -->
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="#academics">Academics</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#friends">Friends</a>
+            </div>
+            <div class="search-box">
+                <input type="search" placeholder="search...">
+            </div>
+        </nav>
+
+        <!-- Top Content Grid: Skills Progress & Video Media -->
+        <section class="grid-top">
+            <!-- Left: Progress Bars -->
+            <div class="skills-list">
+                <div class="skill-item">
+                    <label for="photoshop">Photoshop:</label>
+                    <progress id="photoshop" value="70" max="100">70%</progress>
+                </div>
+                <div class="skill-item">
+                    <label for="java">Java:</label>
+                    <progress id="java" value="85" max="100">85%</progress>
+                </div>
+                <div class="skill-item">
+                    <label for="cpp">C++:</label>
+                    <progress id="cpp" value="90" max="100">90%</progress>
+                </div>
+                <div class="skill-item">
+                    <label for="php">PHP:</label>
+                    <progress id="php" value="60" max="100">60%</progress>
+                </div>
+                <div class="skill-item">
+                    <label for="javascript">Javascript:</label>
+                    <progress id="javascript" value="80" max="100">80%</progress>
+                </div>
+            </div>
+
+            <!-- Right: Media Video & Audio Elements -->
+            <div class="media-container">
+                <!-- Video Element -->
+                <video controls poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'><rect width='100%' height='100%' fill='%234a7c59'/><circle cx='200' cy='110' r='35' fill='%23ffffff' opacity='0.8'/><polygon points='190,95 220,110 190,125' fill='%234a7c59'/><text x='110' y='180' fill='%23ffffff' font-size='16' font-family='sans-serif'>Sample HTML5 Video Stream</text></svg>">
+                    <source src="sample-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Audio Element -->
+                <audio controls>
+                    <source src="sample-audio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+
+        <!-- Main Form Section: Personal & Contact Information Fieldsets -->
+        <form action="#" method="get">
+            <div class="form-grid">
+                
+                <!-- Left Fieldset: Personal Information -->
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <div class="form-group">
+                        <label for="username">User name:</label>
+                        <input type="text" id="username" name="username" placeholder="Enter the user name">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" value="Madangs-10">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regno">Reg No:</label>
+                        <input type="text" id="regno" name="regno" value="URK24CS1210">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <select id="age" name="age">
+                            <option value="19-24" selected>19-24</option>
+                            <option value="18">18</option>
+                            <option value="25+">25+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <label style="width:auto;"><input type="radio" name="gender" value="Male"> Male</label>
+                            <label style="width:auto;"><input type="radio" name="gender" value="Female" checked> Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">DOB:</label>
+                        <input type="date" id="dob" name="dob" value="2005-07-17">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="favcolor">Favorite Color:</label>
+                        <input type="color" id="favcolor" name="favcolor" value="#e6f2ff">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile_photo">Change Profile Photo:</label>
+                        <input type="file" id="profile_photo" name="profile_photo">
+                    </div>
+                </fieldset>
+
+                <!-- Right Fieldset: Contact Information -->
+                <fieldset>
+                    <legend>Contact Information</legend>
+
+                    <div class="form-group" style="align-items: flex-start;">
+                        <label for="address" style="margin-top: 4px;">Address:</label>
+                        <textarea id="address" name="address" rows="3" placeholder="Your address"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <select id="state" name="state">
+                            <option value="">Select</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Karnataka">Karnataka</option>
+                        </select>
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Zipcode:</label>
+                        <input type="number" id="zipcode" name="zipcode" placeholder="only 6 numbers">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile:</label>
+                        <input type="tel" id="mobile" name="mobile" placeholder="(+91)99999-99999">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="valid email">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">URL:</label>
+                        <input type="url" id="url" name="url" placeholder="valid url">
+                        <span class="required-star">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="iverified" name="iverified" checked style="margin-right: 8px;">
+                        <label for="iverified" style="width: auto;">I verified</label>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <input type="submit" value="Submit" class="submit-btn">
+                    </div>
+                </fieldset>
+
+            </div>
+        </form>
+
+        <!-- Bottom Grid: PDF Embed Container & Google Map Iframe -->
+        <section class="bottom-grid">
+            <!-- Left: PDF Embed / HTML Container -->
+            <div class="embed-box">
+                <embed src="data:text/html;charset=utf-8,<html><body style='font-family:sans-serif;padding:15px;background:%23333;color:%23fff;'><h3>Ex No:2 - Working with HTML5 Form and Media Elements</h3><p style='font-size:13px;'>Build a website that conforms to HTML5 standards including form controls, fieldsets, progress bars, audio, video, embed, iframe, and tables.</p><table border='1' style='width:100%25;color:%23fff;border-collapse:collapse;margin-top:10px;'><tr><th>Tag</th><th>Purpose</th></tr><tr><td>&lt;form&gt;</td><td>User Input Form</td></tr><tr><td>&lt;fieldset&gt;</td><td>Grouped Form Fields</td></tr><tr><td>&lt;progress&gt;</td><td>Skill Bar</td></tr></table></body></html>" type="text/html">
+            </div>
+
+            <!-- Right: Google Maps Iframe -->
+            <div class="iframe-box">
+                <iframe src="https://maps.google.com/maps?q=Karunya%20University,%20Coimbatore,%20Tamil%20Nadu&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Karunya University Location Map"></iframe>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p><strong>Your address</strong></p>
+            <p>© 2026. URK24CS1210 - Web Technology Lab Batch 1. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
