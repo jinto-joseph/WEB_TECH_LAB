@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 1 — Interactive HTML Fundamentals Hub</title>
+    <style>
+        :root {
+            --primary: #0060ad;
+            --primary-dark: #004580;
+            --accent: #239c44;
+            --bg-dark: #121824;
+            --panel-bg: #1a2232;
+            --card-bg: #222d42;
+            --text-light: #f0f4f8;
+            --text-dim: #94a3b8;
+            --border: #2e3c54;
+            --active-glow: rgba(0, 96, 173, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--primary), #0088ff);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-title h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .repo-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .repo-link:hover {
+            color: white;
+        }
+
+        /* Main Workspace Layout */
+        .workspace {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background-color: var(--panel-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .exercise-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-light);
+            padding: 12px 14px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .exercise-btn:hover {
+            background-color: var(--card-bg);
+            border-color: var(--border);
+        }
+
+        .exercise-btn.active {
+            background: linear-gradient(135deg, rgba(0, 96, 173, 0.25), rgba(0, 96, 173, 0.1));
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--active-glow);
+        }
+
+        .ex-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .exercise-btn.active .ex-num {
+            color: #38bdf8;
+        }
+
+        .ex-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .ex-file {
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: monospace;
+        }
+
+        /* Preview Stage */
+        .stage {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-dark);
+            height: 100%;
+        }
+
+        .stage-bar {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stage-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stage-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .action-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .preview-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-title">
+            <span class="badge">EXP 1</span>
+            <h1>Web Technology Lab — HTML Fundamentals Hub</h1>
+        </div>
+        <a href="../README.md" class="repo-link">
+            <span>← Back to Main Repository</span>
+        </a>
+    </header>
+
+    <div class="workspace">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">Practice Exercises (12)</div>
+            <ul class="exercise-list" id="exerciseList">
+                <!-- Populated via JS -->
+            </ul>
+        </aside>
+
+        <!-- Preview Stage -->
+        <main class="stage">
+            <div class="stage-bar">
+                <div class="stage-info">
+                    <span id="currentExNum" class="badge">EX 12</span>
+                    <span id="currentExTitle" class="stage-title">Real-World Scenario — Infosys Portal</span>
+                </div>
+                <div>
+                    <a id="openTabBtn" href="./Scenario.html" target="_blank" class="action-btn">
+                        <span>↗ Open Full Screen</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="preview-container">
+                <iframe id="previewFrame" src="./Scenario.html" title="Exercise Live Preview"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const exercises = [
+            { num: "Exercise 1", title: "Basic HTML Structure", file: "1a.html" },
+            { num: "Exercise 2", title: "Headings & Paragraph Tags", file: "1b.html" },
+            { num: "Exercise 3", title: "All Six Heading Tags (h1-h6)", file: "1c.html" },
+            { num: "Exercise 4", title: "Line Break Address Format", file: "1d.html" },
+            { num: "Exercise 5", title: "Paragraph Line Break Flow", file: "1e.html" },
+            { num: "Exercise 6", title: "Text Formatting Tags", file: "1f.html" },
+            { num: "Exercise 7", title: "Cite Element & Image Tag", file: "1g.html" },
+            { num: "Exercise 8", title: "Quotations & Abbreviations", file: "1h.html" },
+            { num: "Exercise 9", title: "Inline CSS Background Colors", file: "1i.html" },
+            { num: "Exercise 10", title: "Inline CSS Color & Alignment", file: "1i.html" },
+            { num: "Exercise 11", title: "Inline CSS Custom Borders", file: "1j.html" },
+            { num: "Exercise 12", title: "Infosys Training Portal Scenario", file: "Scenario.html" }
+        ];
+
+        const listEl = document.getElementById("exerciseList");
+        const iframe = document.getElementById("previewFrame");
+        const titleEl = document.getElementById("currentExTitle");
+        const numEl = document.getElementById("currentExNum");
+        const openBtn = document.getElementById("openTabBtn");
+
+        exercises.forEach((ex, idx) => {
+            const li = document.createElement("li");
+            const btn = document.createElement("button");
+            btn.className = `exercise-btn ${idx === 11 ? "active" : ""}`;
+            btn.innerHTML = `
+                <span class="ex-num">${ex.num}</span>
+                <span class="ex-title">${ex.title}</span>
+                <span class="ex-file">${ex.file}</span>
+            `;
+            btn.onclick = () => loadExercise(ex, btn);
+            li.appendChild(btn);
+            listEl.appendChild(li);
+        });
+
+        function loadExercise(ex, btnEl) {
+            document.querySelectorAll(".exercise-btn").forEach(b => b.classList.remove("active"));
+            btnEl.classList.add("active");
+            iframe.src = `./${ex.file}`;
+            titleEl.textContent = ex.title;
+            numEl.textContent = ex.num.toUpperCase();
+            openBtn.href = `./${ex.file}`;
+        }
+    </script>
+</body>
+</html>

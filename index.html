@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23CS2049 - Web Technology Lab Portfolio & Record Portal</title>
+    <style>
+        :root {
+            --primary: #0060ad;
+            --primary-hover: #004985;
+            --success: #239c44;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Top Header Card */
+        .record-header {
+            background: linear-gradient(135deg, #0056b3 0%, #0066c0 100%);
+            color: #ffffff;
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .header-title p {
+            font-size: 14.5px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .reg-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hosted Links Section */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .badge-tag {
+            background-color: #e0f2fe;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Record Table Format */
+        .record-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .record-table th, .record-table td {
+            border: 1px solid var(--border);
+            padding: 12px 14px;
+            font-size: 14.5px;
+            text-align: left;
+        }
+
+        .record-table th {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            font-weight: 700;
+            width: 25%;
+        }
+
+        .host-link-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-family: monospace;
+            font-size: 13.5px;
+            color: #0f172a;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-link:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .aim-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 14px 16px;
+            margin-top: 14px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .aim-box h4 {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .aim-box p {
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="record-header">
+            <div class="header-title">
+                <h1>23CS2049 - Web Technology Lab</h1>
+                <p>Semester Lab Experiments Portfolio & Hosted Record Portal</p>
+            </div>
+            <div class="reg-badge">
+                Reg No: [Your Register Number]
+            </div>
+        </header>
+
+        <!-- Experiment 1 Record Card -->
+        <section class="card">
+            <div class="card-header-row">
+                <h2 class="card-title">Experiment No. 1 — HTML Fundamentals</h2>
+                <span class="badge-tag">EX 1 RECORD READY</span>
+            </div>
+
+            <!-- Lab Record Sheet Table Format -->
+            <table class="record-table">
+                <tr>
+                    <th>Ex. No. 1</th>
+                    <td><strong>Title:</strong> HTML Fundamentals & Infosys Training Portal Scenario</td>
+                </tr>
+                <tr>
+                    <th>Date of Exercise</th>
+                    <td>17 July 2026</td>
+                </tr>
+                <tr>
+                    <th>GitHub Host Link</th>
+                    <td>
+                        <div class="host-link-box">
+                            <span id="exp1Link">https://&lt;your-github-username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html</span>
+                            <button class="copy-btn" onclick="copyLink('exp1Link')">Copy Link</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="aim-box">
+                <h4>Aim:</h4>
+                <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling, semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
+            </div>
+
+            <div class="aim-box" style="border-left-color: var(--success); margin-top: 10px;">
+                <h4>Direct Scenario Host Link (Ex 12):</h4>
+                <div class="host-link-box" style="margin-top: 6px;">
+                    <span id="scenarioLink">https://&lt;your-github-username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</span>
+                    <button class="copy-btn" style="background-color: var(--success);" onclick="copyLink('scenarioLink')">Copy Link</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="./17_July_Exp_1/index.html" class="btn-link">
+                    <span>🚀 Launch Interactive Lab Hub</span>
+                </a>
+                <a href="./17_July_Exp_1/Scenario.html" class="btn-link" style="background-color: var(--success);">
+                    <span>🏢 Open Infosys Scenario (Inline Styles)</span>
+                </a>
+                <a href="./17_July_Exp_1/README.md" class="btn-link" style="background-color: #64748b;">
+                    <span>📖 View Exp 1 Documentation</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Record Sheet Template Generator for Student -->
+        <section class="card">
+            <h2 class="card-title" style="margin-bottom: 12px;">📋 Quick Reference: Record Copy-Paste Links</h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+                When filling out your lab record document, replace <code>&lt;your-github-username&gt;</code> with your actual GitHub username once pushed.
+            </p>
+            
+            <table class="record-table">
+                <thead>
+                    <tr style="background-color: #f1f5f9;">
+                        <th style="width: 15%;">Exercise</th>
+                        <th style="width: 35%;">Topic / Title</th>
+                        <th style="width: 50%;">GitHub Hosted URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ex 1 (Hub)</strong></td>
+                        <td>All 12 Exercises Interactive Hub</td>
+                        <td><code>https://&lt;username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ex 12 (Scenario)</strong></td>
+                        <td>Infosys Training Portal (Inline Styled)</td>
+                        <td><code>https://&lt;username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            23CS2049 — Web Technology Lab | Academic Year 2026–2027 ODD Semester
+        </footer>
+
+    </div>
+
+    <script>
+        function copyLink(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied hosted link to clipboard!\n\n" + text);
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
