@@ -46,7 +46,6 @@
             gap: 24px;
         }
 
-        /* Dark Theme Header */
         .record-header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
             color: #ffffff;
@@ -86,7 +85,6 @@
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
         }
 
-        /* Card Section Styles */
         .card {
             background-color: var(--card-dark);
             border: 1px solid var(--border);
@@ -123,7 +121,6 @@
             border-radius: 20px;
         }
 
-        /* Record Table Formatting */
         .record-table {
             width: 100%;
             border-collapse: collapse;
@@ -220,7 +217,6 @@
             color: var(--text-muted);
         }
 
-        /* Step-by-step Guide for Adding Future Experiments */
         .step-list {
             list-style: none;
             display: flex;
@@ -278,7 +274,6 @@
 
     <div class="container">
         
-        <!-- Header -->
         <header class="record-header">
             <div class="header-title">
                 <h1>23CS2049 - Web Technology Lab</h1>
@@ -289,52 +284,7 @@
             </div>
         </header>
 
-        <!-- Experiment 2 Record Card -->
-        <section class="card">
-            <div class="card-header-row">
-                <h2 class="card-title">
-                    <span>📝</span> Experiment No. 2 — Working with HTML5 Form and Media Elements
-                </h2>
-                <span class="badge-tag" style="background-color: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.3);">EX 2 RECORD READY</span>
-            </div>
-
-            <!-- Lab Record Sheet Format Table -->
-            <table class="record-table">
-                <tr>
-                    <th>Ex. No. 2</th>
-                    <td><strong>Title:</strong> WORKING WITH HTML5 FORM AND MEDIA ELEMENTS</td>
-                </tr>
-                <tr>
-                    <th>Date of Exercise</th>
-                    <td>24 July 2026</td>
-                </tr>
-                <tr>
-                    <th>GitHub Host Link</th>
-                    <td>
-                        <div class="host-link-box">
-                            <span id="exp2Link">https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html</span>
-                            <button class="copy-btn" onclick="copyLink('exp2Link')">Copy Link</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="aim-box" style="border-left-color: var(--accent-green);">
-                <h4 style="color: #34d399;">Aim:</h4>
-                <p>To build a website that conforms to HTML5 standards incorporating document structure, text formatting, images, anchors, tables, form controls (`<form>`, `<input>`, `<select>`, `<textarea>`, `<fieldset>`, `<legend>`, `<progress>`), and HTML5 media elements (`<audio>`, `<video>`, `<embed>`, `<iframe>`).</p>
-            </div>
-
-            <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
-                <a href="./24_July_Exp_2/exercise1.html" class="btn-link" style="background-color: var(--accent-green);">
-                    <span>🚀 Open Exp 2 Live Website</span>
-                </a>
-                <a href="https://github.com/jinto-joseph/WEB_TECH_LAB/tree/master/24_July_Exp_2#readme" target="_blank" class="btn-link" style="background-color: #475569;">
-                    <span>📖 View Exp 2 Documentation ↗</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Experiment 1 Record Card -->
+        <!-- Experiment 1 -->
         <section class="card">
             <div class="card-header-row">
                 <h2 class="card-title">
@@ -343,7 +293,6 @@
                 <span class="badge-tag">EX 1 RECORD READY</span>
             </div>
 
-            <!-- Lab Record Sheet Format Table -->
             <table class="record-table">
                 <tr>
                     <th>Ex. No. 1</th>
@@ -366,7 +315,7 @@
 
             <div class="aim-box">
                 <h4>Aim:</h4>
-                <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling (`style="..."`), semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
+                <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling, semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
             </div>
 
             <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
@@ -382,7 +331,51 @@
             </div>
         </section>
 
-        <!-- How to Add Future Experiments Section -->
+        <!-- Experiment 2 -->
+        <section class="card">
+            <div class="card-header-row">
+                <h2 class="card-title">
+                    <span>📝</span> Experiment No. 2 — Working with HTML5 Form and Media Elements
+                </h2>
+                <span class="badge-tag" style="background-color: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.3);">EX 2 RECORD READY</span>
+            </div>
+
+            <table class="record-table">
+                <tr>
+                    <th>Ex. No. 2</th>
+                    <td><strong>Title:</strong> WORKING WITH HTML5 FORM AND MEDIA ELEMENTS</td>
+                </tr>
+                <tr>
+                    <th>Date of Exercise</th>
+                    <td>24 July 2026</td>
+                </tr>
+                <tr>
+                    <th>GitHub Host Link</th>
+                    <td>
+                        <div class="host-link-box">
+                            <span id="exp2Link">https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html</span>
+                            <button class="copy-btn" onclick="copyLink('exp2Link')">Copy Link</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="aim-box" style="border-left-color: var(--accent-green);">
+                <h4 style="color: #34d399;">Aim:</h4>
+                <p>To build a website that conforms to HTML5 standards incorporating document structure, text formatting, images, anchors, tables, form controls (form, input, select, textarea, fieldset, legend, progress), and HTML5 media elements (audio, video, embed, iframe).</p>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
+                <a href="./24_July_Exp_2/exercise1.html" class="btn-link" style="background-color: var(--accent-green);">
+                    <span>🚀 Open Exp 2 Live Website</span>
+                </a>
+                <a href="https://github.com/jinto-joseph/WEB_TECH_LAB/tree/master/24_July_Exp_2#readme" target="_blank" class="btn-link" style="background-color: #475569;">
+                    <span>📖 View Exp 2 Documentation ↗</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Guide for Next Experiments -->
         <section class="card">
             <div class="card-header-row">
                 <h2 class="card-title">
@@ -392,7 +385,7 @@
             </div>
 
             <p style="color: var(--text-muted); font-size: 14px;">
-                You don't need to configure GitHub Pages again! Every time you complete a new experiment, follow these simple steps to make it live instantly on your hosted site:
+                Every time you complete a new experiment, follow these simple steps to make it live instantly on your hosted site:
             </p>
 
             <ol class="step-list">
@@ -406,7 +399,7 @@
                 <li class="step-item">
                     <div class="step-num">2</div>
                     <div class="step-text">
-                        <strong>Push the folder to GitHub via terminal or VS Code Git:</strong><br>
+                        <strong>Push the folder to GitHub via terminal:</strong><br>
                         Run these 3 commands in VS Code Terminal:
                         <div style="background-color: #090d16; padding: 8px 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 13px; color: #38bdf8;">
                             git add .<br>
@@ -433,7 +426,6 @@
     </div>
 
     <script>
-        // Auto-detect live hosted URL if on GitHub Pages
         window.addEventListener("DOMContentLoaded", () => {
             if (window.location.hostname.includes("github.io")) {
                 const baseUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, "");

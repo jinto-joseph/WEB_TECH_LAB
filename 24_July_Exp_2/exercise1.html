@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +39,6 @@
             gap: 20px;
         }
 
-        /* Header Section */
         .header {
             display: flex;
             justify-content: space-between;
@@ -63,7 +61,6 @@
             font-weight: bold;
         }
 
-        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -90,7 +87,6 @@
             border-radius: 2px;
         }
 
-        /* Top Grid: Skills Progress & Media Video */
         .grid-top {
             display: grid;
             grid-template-columns: 240px 1fr;
@@ -111,7 +107,6 @@
             margin-bottom: 4px;
         }
 
-        /* Custom Cross-Browser Progress Bar Styling */
         progress {
             width: 100%;
             height: 18px;
@@ -148,10 +143,11 @@
 
         video {
             width: 100%;
-            max-height: 220px;
+            height: 220px;
             border: 1px solid #ccc;
             background-color: #000000;
             border-radius: 4px;
+            object-fit: contain;
         }
 
         audio {
@@ -159,7 +155,6 @@
             margin-top: 5px;
         }
 
-        /* Form Section: Side-by-side Fieldsets */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -234,15 +229,13 @@
             background-color: #d0d0d0;
         }
 
-        /* Bottom Section: Embed PDF Container & Google Map Iframe */
         .bottom-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
 
-        .embed-box,
-        .iframe-box {
+        .embed-box, .iframe-box {
             border: 1px solid #ccc;
             height: 320px;
             overflow: hidden;
@@ -250,14 +243,12 @@
             background-color: #ffffff;
         }
 
-        iframe,
-        embed {
+        iframe, embed {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Footer Section */
         .footer {
             border-top: 1px solid var(--border-color);
             padding-top: 15px;
@@ -270,22 +261,16 @@
         }
     </style>
 </head>
-
 <body>
 
-    <!-- HTML Comment: Experiment 02 - Working with HTML5 Form and Media Elements -->
+    <!-- HTML Comment Tag Requirement -->
     <div class="wrapper">
-
-        <!-- Header Section -->
+        
         <header class="header">
-            <!-- Profile Photo Image Element -->
-            <img src="profile.jpg"
-                onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrnoeCDSTNv_vdY7dQ3yRL9g0bGCq9ZsTFWUiki63hrQ&s'"
-                alt="Ms. Mariah Caraiban Profile Photo" class="profile-img">
-            <h1>Ms.Mariah Caraiban</h1>
+            <img src="profile.jpg" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrnoeCDSTNv_vdY7dQ3yRL9g0bGCq9ZsTFWUiki63hrQ&s'" alt="Mr. Jinto Joseph Profile Photo" class="profile-img">
+            <h1>Mr.Jinto Joseph</h1>
         </header>
 
-        <!-- Navigation Bar with Anchor Links -->
         <nav class="navbar">
             <div class="nav-links">
                 <a href="#academics">Academics</a>
@@ -297,9 +282,7 @@
             </div>
         </nav>
 
-        <!-- Top Content Grid: Skills Progress & Video Media -->
         <section class="grid-top">
-            <!-- Left: Customized Skill Progress Bars -->
             <div class="skills-list">
                 <div class="skill-item">
                     <label for="photoshop">Photoshop:</label>
@@ -323,16 +306,13 @@
                 </div>
             </div>
 
-            <!-- Right: Media Video & Audio Elements -->
             <div class="media-container">
-                <!-- HTML5 Video Player -->
                 <video controls style="width: 100%; height: 220px; border: 1px solid #ccc; border-radius: 4px; background: #000; object-fit: contain;">
                     <source src="video.mp4" type="video/mp4">
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 
-                <!-- Audio Element -->
                 <audio controls style="width: 100%; margin-top: 4px;">
                     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -340,11 +320,9 @@
             </div>
         </section>
 
-        <!-- Main Form Section: Personal & Contact Information Fieldsets -->
         <form action="#" method="get">
             <div class="form-grid">
-
-                <!-- Left Fieldset: Personal Information -->
+                
                 <fieldset>
                     <legend>Personal Information</legend>
 
@@ -379,8 +357,7 @@
                         <label>Gender:</label>
                         <div class="radio-group">
                             <label style="width:auto;"><input type="radio" name="gender" value="Male"> Male</label>
-                            <label style="width:auto;"><input type="radio" name="gender" value="Female" checked>
-                                Female</label>
+                            <label style="width:auto;"><input type="radio" name="gender" value="Female" checked> Female</label>
                         </div>
                     </div>
 
@@ -401,7 +378,6 @@
                     </div>
                 </fieldset>
 
-                <!-- Right Fieldset: Contact Information -->
                 <fieldset>
                     <legend>Contact Information</legend>
 
@@ -457,22 +433,16 @@
             </div>
         </form>
 
-        <!-- Bottom Grid: Real PDF Document Embed & Google Map Iframe -->
         <section class="bottom-grid">
-            <!-- Left: Embedded PDF Document (Ex2.pdf) -->
             <div class="embed-box">
                 <embed src="Ex2.pdf" type="application/pdf" width="100%" height="100%">
             </div>
 
-            <!-- Right: Google Maps Iframe -->
             <div class="iframe-box">
-                <iframe
-                    src="https://maps.google.com/maps?q=Karunya%20University,%20Coimbatore,%20Tamil%20Nadu&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                    loading="lazy" title="Karunya University Location Map"></iframe>
+                <iframe src="https://maps.google.com/maps?q=Karunya%20University,%20Coimbatore,%20Tamil%20Nadu&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Karunya University Location Map"></iframe>
             </div>
         </section>
 
-        <!-- Footer Section -->
         <footer class="footer">
             <p><strong>Your address</strong></p>
             <p>© 2026. URK24CS1210 - Web Technology Lab Batch 1. All Rights Reserved.</p>
@@ -481,5 +451,4 @@
     </div>
 
 </body>
-
 </html>
