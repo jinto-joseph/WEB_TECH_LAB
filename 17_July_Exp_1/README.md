@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Course](https://img.shields.io/badge/Course-23CS2049%20Web%20Technology%20Lab-0060ad?style=for-the-badge&logo=html5&logoColor=white)
-![Semester](https://img.shields.io/badge/Semester-2026--27%20ODD-239c44?style=for-the-badge)
+![Reg No](https://img.shields.io/badge/Reg%20No-URK24CS1210-brightgreen?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 ![Styling](https://img.shields.io/badge/Styling-100%25%20Inline%20CSS-orange?style=for-the-badge)
 
@@ -13,15 +13,16 @@
 
 </div>
 
-## 📋 Lab Record Information Sheet
+## 📋 Lab Record Submission Info
 
 | Field | Details |
 |---|---|
+| **Register Number** | `URK24CS1210` |
 | **Course Code & Title** | `23CS2049 - Web Technology Lab` |
-| **Ex. No. 1 Title** | `HTML Fundamentals & Real-World Scenario (Infosys Training Portal)` |
+| **Ex. No. 1 Title** | `HTML Fundamentals & Infosys Training Portal` |
 | **Date of Exercise** | `17 July 2026` |
-| **GitHub Host Link** | `https://<your-username>.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html` |
-| **Scenario Host Link** | `https://<your-username>.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html` |
+| **GitHub Host Link** | `https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html` |
+| **Scenario Host Link** | `https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html` |
 
 ---
 
@@ -33,7 +34,7 @@ To understand and implement core HTML5 building blocks including document struct
 
 ## 📝 Practice Exercises Overview
 
-| Ex # | Exercise Topic | Primary Tags & CSS Implemented | Source File | Live Link |
+| Ex # | Exercise Topic | Primary Tags & CSS Implemented | Source File | Live Hosted Link |
 | :---: | :--- | :--- | :---: | :---: |
 | **01** | Basic HTML Page Structure | `<!DOCTYPE>`, `<html>`, `<head>`, `<body>`, `<title>` | [1a.html](./1a.html) | [Run Ex 1](./1a.html) |
 | **02** | Heading & Paragraph Tags | `<h1>`, `<p>`, `<br>`, `<hr>` | [1b.html](./1b.html) | [Run Ex 2](./1b.html) |
@@ -68,20 +69,20 @@ As per lab requirements, internal `<style>` blocks have been converted completel
 1. Push your repository to GitHub:
    ```bash
    git add .
-   git commit -m "Upload Exp 1 and Inline Styled Scenario.html"
-   git push origin main
+   git commit -m "Upload Exp 1 with Reg No URK24CS1210 and dark portal"
+   git push origin master
    ```
 2. Go to Repository Settings on GitHub → **Pages**.
-3. Select `Deploy from a branch` → Select `main` branch and `/ (root)` folder → Click **Save**.
-4. Copy the hosted link into your Lab Record:
+3. Select `Deploy from a branch` → Select `master` branch and `/ (root)` folder → Click **Save**.
+4. Your live hosted link for your record sheet:
    ```
-   https://<your-username>.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html
+   https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html
    ```
 
 ---
 
 <div align="center">
 
-**[ ⬅️ Back to Main Repository README ](../README.md)**
+**Student:** Reg No: URK24CS1210 | **Repository:** jinto-joseph/WEB_TECH_LAB
 
 </div>

@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23CS2049 - Web Technology Lab Portfolio & Record Portal</title>
+    <title>23CS2049 - Web Technology Lab Portfolio | URK24CS1210</title>
     <style>
         :root {
-            --primary: #0060ad;
-            --primary-hover: #004985;
-            --success: #239c44;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-dark: #0b0f17;
+            --card-dark: #151c28;
+            --card-header: #1a2436;
+            --accent-blue: #0088ff;
+            --accent-blue-hover: #0066cc;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --accent-purple: #8b5cf6;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #222f43;
+            --code-bg: #0d131f;
             --radius: 12px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
         * {
@@ -26,7 +30,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             padding: 30px 20px;
@@ -36,21 +40,22 @@
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 920px;
             display: flex;
             flex-direction: column;
             gap: 24px;
         }
 
-        /* Top Header Card */
+        /* Dark Theme Header */
         .record-header {
-            background: linear-gradient(135deg, #0056b3 0%, #0066c0 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
             color: #ffffff;
             border-radius: var(--radius);
             padding: 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border: 1px solid var(--border);
             box-shadow: var(--shadow);
             flex-wrap: wrap;
             gap: 16px;
@@ -60,31 +65,33 @@
             font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.3px;
+            color: #ffffff;
         }
 
         .header-title p {
             font-size: 14.5px;
-            opacity: 0.9;
+            color: #cbd5e1;
             margin-top: 4px;
         }
 
         .reg-badge {
-            background-color: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(107, 241, 192, 0.4);
+            color: #34d399;
             padding: 8px 18px;
-            border-radius: 8px;
+            border-radius: 20px;
             font-size: 16px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
         }
 
-        /* Hosted Links Section */
+        /* Card Section Styles */
         .card {
-            background-color: var(--card-bg);
+            background-color: var(--card-dark);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 24px;
+            padding: 26px;
             box-shadow: var(--shadow);
         }
 
@@ -92,27 +99,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 12px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 14px;
         }
 
         .card-title {
-            color: var(--primary);
-            font-size: 19px;
+            color: var(--text-main);
+            font-size: 20px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .badge-tag {
-            background-color: #e0f2fe;
-            color: var(--primary);
+            background-color: rgba(0, 136, 255, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
             font-size: 12px;
             font-weight: 700;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
         }
 
-        /* Record Table Format */
+        /* Record Table Formatting */
         .record-table {
             width: 100%;
             border-collapse: collapse;
@@ -121,13 +132,13 @@
 
         .record-table th, .record-table td {
             border: 1px solid var(--border);
-            padding: 12px 14px;
+            padding: 12px 16px;
             font-size: 14.5px;
             text-align: left;
         }
 
         .record-table th {
-            background-color: #f8fafc;
+            background-color: var(--card-header);
             color: var(--text-main);
             font-weight: 700;
             width: 25%;
@@ -136,63 +147,69 @@
         .host-link-box {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background-color: #f1f5f9;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            font-family: monospace;
+            justify-content: space-between;
+            gap: 12px;
+            background-color: var(--code-bg);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 13.5px;
-            color: #0f172a;
+            color: #38bdf8;
             word-break: break-all;
         }
 
         .copy-btn {
-            background-color: var(--primary);
+            background-color: var(--accent-blue);
             color: white;
             border: none;
-            padding: 6px 14px;
+            padding: 7px 16px;
             border-radius: 6px;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             flex-shrink: 0;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
 
         .copy-btn:hover {
-            background-color: var(--primary-hover);
+            background-color: var(--accent-blue-hover);
+            transform: translateY(-1px);
         }
 
         .btn-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background-color: var(--primary);
+            padding: 10px 20px;
+            background-color: var(--accent-blue);
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 13.5px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
 
         .btn-link:hover {
-            background-color: var(--primary-hover);
+            background-color: var(--accent-blue-hover);
+            transform: translateY(-1px);
         }
 
         .aim-box {
-            background-color: #f8fafc;
-            border-left: 4px solid var(--primary);
-            padding: 14px 16px;
-            margin-top: 14px;
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--accent-blue);
+            padding: 14px 18px;
+            margin-top: 16px;
             border-radius: 0 8px 8px 0;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .aim-box h4 {
-            color: var(--primary);
-            font-size: 14px;
+            color: #38bdf8;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 4px;
@@ -200,13 +217,59 @@
 
         .aim-box p {
             font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Step-by-step Guide for Adding Future Experiments */
+        .step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .step-item {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .step-text strong {
             color: var(--text-main);
+        }
+
+        .step-text code {
+            background-color: #1e293b;
+            color: #38bdf8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
         }
 
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 13.5px;
             margin-top: 10px;
         }
     </style>
@@ -219,21 +282,23 @@
         <header class="record-header">
             <div class="header-title">
                 <h1>23CS2049 - Web Technology Lab</h1>
-                <p>Semester Lab Experiments Portfolio & Hosted Record Portal</p>
+                <p>Semester Experiments Record & Hosted Links Portal</p>
             </div>
             <div class="reg-badge">
-                Reg No: [Your Register Number]
+                Reg No: URK24CS1210
             </div>
         </header>
 
         <!-- Experiment 1 Record Card -->
         <section class="card">
             <div class="card-header-row">
-                <h2 class="card-title">Experiment No. 1 — HTML Fundamentals</h2>
+                <h2 class="card-title">
+                    <span>🧪</span> Experiment No. 1 — HTML Fundamentals
+                </h2>
                 <span class="badge-tag">EX 1 RECORD READY</span>
             </div>
 
-            <!-- Lab Record Sheet Table Format -->
+            <!-- Lab Record Sheet Format Table -->
             <table class="record-table">
                 <tr>
                     <th>Ex. No. 1</th>
@@ -247,7 +312,7 @@
                     <th>GitHub Host Link</th>
                     <td>
                         <div class="host-link-box">
-                            <span id="exp1Link">https://&lt;your-github-username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html</span>
+                            <span id="exp1Link">https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html</span>
                             <button class="copy-btn" onclick="copyLink('exp1Link')">Copy Link</button>
                         </div>
                     </td>
@@ -256,71 +321,97 @@
 
             <div class="aim-box">
                 <h4>Aim:</h4>
-                <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling, semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
+                <p>To understand and implement core HTML5 building blocks including page structure, headings, text formatting, inline CSS styling (`style="..."`), semantic tags, and building a real-world scenario (Infosys Employee Training Portal) using pure inline styles.</p>
             </div>
 
-            <div class="aim-box" style="border-left-color: var(--success); margin-top: 10px;">
-                <h4>Direct Scenario Host Link (Ex 12):</h4>
+            <div class="aim-box" style="border-left-color: var(--accent-green); margin-top: 12px;">
+                <h4 style="color: #34d399;">Direct Scenario Host Link (Ex 12):</h4>
                 <div class="host-link-box" style="margin-top: 6px;">
-                    <span id="scenarioLink">https://&lt;your-github-username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</span>
-                    <button class="copy-btn" style="background-color: var(--success);" onclick="copyLink('scenarioLink')">Copy Link</button>
+                    <span id="scenarioLink">https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</span>
+                    <button class="copy-btn" style="background-color: var(--accent-green);" onclick="copyLink('scenarioLink')">Copy Link</button>
                 </div>
             </div>
 
-            <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <div style="margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap;">
                 <a href="./17_July_Exp_1/index.html" class="btn-link">
                     <span>🚀 Launch Interactive Lab Hub</span>
                 </a>
-                <a href="./17_July_Exp_1/Scenario.html" class="btn-link" style="background-color: var(--success);">
+                <a href="./17_July_Exp_1/Scenario.html" class="btn-link" style="background-color: var(--accent-green);">
                     <span>🏢 Open Infosys Scenario (Inline Styles)</span>
                 </a>
-                <a href="./17_July_Exp_1/README.md" class="btn-link" style="background-color: #64748b;">
-                    <span>📖 View Exp 1 Documentation</span>
+                <a href="./17_July_Exp_1/README.md" class="btn-link" style="background-color: #475569;">
+                    <span>📖 View Documentation</span>
                 </a>
             </div>
         </section>
 
-        <!-- Record Sheet Template Generator for Student -->
+        <!-- How to Add Future Experiments Section -->
         <section class="card">
-            <h2 class="card-title" style="margin-bottom: 12px;">📋 Quick Reference: Record Copy-Paste Links</h2>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
-                When filling out your lab record document, replace <code>&lt;your-github-username&gt;</code> with your actual GitHub username once pushed.
+            <div class="card-header-row">
+                <h2 class="card-title">
+                    <span>⚡</span> How to Add Next Experiments to GitHub
+                </h2>
+                <span class="badge-tag" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa; border-color: rgba(167, 139, 250, 0.3);">EASY 3-STEP GUIDE</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 14px;">
+                You don't need to configure GitHub Pages again! Every time you complete a new experiment, follow these simple steps to make it live instantly on your hosted site:
             </p>
-            
-            <table class="record-table">
-                <thead>
-                    <tr style="background-color: #f1f5f9;">
-                        <th style="width: 15%;">Exercise</th>
-                        <th style="width: 35%;">Topic / Title</th>
-                        <th style="width: 50%;">GitHub Hosted URL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Ex 1 (Hub)</strong></td>
-                        <td>All 12 Exercises Interactive Hub</td>
-                        <td><code>https://&lt;username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html</code></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ex 12 (Scenario)</strong></td>
-                        <td>Infosys Training Portal (Inline Styled)</td>
-                        <td><code>https://&lt;username&gt;.github.io/WEB_TECH_LAB/17_July_Exp_1/Scenario.html</code></td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <ol class="step-list">
+                <li class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Create a folder for the new experiment:</strong><br>
+                        Create a folder like <code>Exp_2</code> or <code>24_July_Exp_2</code> inside your <code>WEB_TECH_LAB</code> project directory and add your exercise HTML files inside it.
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Push the folder to GitHub via terminal or VS Code Git:</strong><br>
+                        Run these 3 commands in VS Code Terminal:
+                        <div style="background-color: #090d16; padding: 8px 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 13px; color: #38bdf8;">
+                            git add .<br>
+                            git commit -m "Added Experiment 2"<br>
+                            git push origin master
+                        </div>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Your new experiment URL is automatically live!</strong><br>
+                        GitHub Pages will automatically publish it at:<br>
+                        <code style="color: #34d399;">https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_2/</code>
+                    </div>
+                </li>
+            </ol>
         </section>
 
         <footer>
-            23CS2049 — Web Technology Lab | Academic Year 2026–2027 ODD Semester
+            23CS2049 — Web Technology Lab | Register No: URK24CS1210 | GitHub Repo: jinto-joseph/WEB_TECH_LAB
         </footer>
 
     </div>
 
     <script>
+        // Auto-detect live hosted URL if on GitHub Pages
+        window.addEventListener("DOMContentLoaded", () => {
+            if (window.location.hostname.includes("github.io")) {
+                const baseUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, "");
+                const exp1Url = baseUrl + "/17_July_Exp_1/index.html";
+                const scenarioUrl = baseUrl + "/17_July_Exp_1/Scenario.html";
+                
+                document.getElementById("exp1Link").innerText = exp1Url;
+                document.getElementById("scenarioLink").innerText = scenarioUrl;
+            }
+        });
+
         function copyLink(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Copied hosted link to clipboard!\n\n" + text);
+                alert("Copied link for record sheet!\n\n" + text);
             }).catch(err => {
                 console.error("Failed to copy: ", err);
             });
