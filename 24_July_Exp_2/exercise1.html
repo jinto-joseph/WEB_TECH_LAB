@@ -233,7 +233,7 @@
             background-color: #d0d0d0;
         }
 
-        /* Bottom Section: Embed PDF & Google Map Iframe */
+        /* Bottom Section: Embed PDF Container & Google Map Iframe */
         .bottom-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -245,6 +245,7 @@
             height: 320px;
             overflow: hidden;
             border-radius: 4px;
+            background-color: #ffffff;
         }
 
         iframe, embed {
@@ -274,7 +275,7 @@
         <!-- Header Section -->
         <header class="header">
             <!-- Profile Photo Image Element -->
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Ms. Mariah Caraiban Profile Photo" class="profile-img">
+            <img src="profile.jpg" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrnoeCDSTNv_vdY7dQ3yRL9g0bGCq9ZsTFWUiki63hrQ&s'" alt="Ms. Mariah Caraiban Profile Photo" class="profile-img">
             <h1>Ms.Mariah Caraiban</h1>
         </header>
 
@@ -451,11 +452,11 @@
             </div>
         </form>
 
-        <!-- Bottom Grid: PDF Embed Container & Google Map Iframe -->
+        <!-- Bottom Grid: Real PDF Document Embed & Google Map Iframe -->
         <section class="bottom-grid">
-            <!-- Left: PDF Embed / HTML Container -->
+            <!-- Left: Embedded PDF Document (Ex2.pdf) -->
             <div class="embed-box">
-                <embed src="data:text/html;charset=utf-8,<html><body style='font-family:sans-serif;padding:15px;background:%23333;color:%23fff;'><h3>Ex No:2 - Working with HTML5 Form and Media Elements</h3><p style='font-size:13px;'>Build a website that conforms to HTML5 standards including form controls, fieldsets, progress bars, audio, video, embed, iframe, and tables.</p><table border='1' style='width:100%25;color:%23fff;border-collapse:collapse;margin-top:10px;'><tr><th>Tag</th><th>Purpose</th></tr><tr><td>&lt;form&gt;</td><td>User Input Form</td></tr><tr><td>&lt;fieldset&gt;</td><td>Grouped Form Fields</td></tr><tr><td>&lt;progress&gt;</td><td>Skill Bar</td></tr></table></body></html>" type="text/html">
+                <embed src="Ex2.pdf" type="application/pdf" width="100%" height="100%">
             </div>
 
             <!-- Right: Google Maps Iframe -->
