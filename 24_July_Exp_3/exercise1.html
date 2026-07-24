@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex.No: 03 - Responsive Webpage Using HTML5 and CSS3</title>
+    <style>
+        :root {
+            --header-purple: #7b1fa2;
+            --nav-teal: #80cbd2;
+            --banner-teal: #00838f;
+            --card-dark: #003366;
+            --footer-bg: #ffe0b2;
+            --text-dark: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, Garamond, serif;
+            background-color: #f4f6f9;
+            color: var(--text-dark);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Purple Header */
+        .header {
+            background-color: var(--header-purple);
+            color: #ffffff;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 110px;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .header-title h1 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-style: italic;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-btn {
+            width: 28px;
+            height: 28px;
+            background-color: #ffffff;
+            color: var(--header-purple);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .social-btn:hover {
+            background-color: #e1bee7;
+        }
+
+        /* Navigation Menu with CSS Link Pseudoclasses */
+        .navbar {
+            background-color: var(--nav-teal);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 6px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* CSS Link Pseudo-classes Demonstration */
+        .navbar a:link {
+            color: #003366;
+            background-color: transparent;
+        }
+
+        .navbar a:visited {
+            color: #4a148c;
+        }
+
+        .navbar a:hover {
+            color: #ffffff;
+            background-color: #00838f;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .navbar a:active {
+            color: #ffff00;
+            background-color: #004d40;
+        }
+
+        /* Banner Section: Multicolumn Flow Layout */
+        .banner {
+            background-color: var(--banner-teal);
+            color: #ffffff;
+            padding: 30px 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .bio-box {
+            border: 2px dashed #ffffff;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            line-height: 1.6;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-graphic {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+
+        .banner-graphic svg {
+            width: 80%;
+            height: 100%;
+        }
+
+        /* Technology Skill Cards (4 Columns) */
+        .tech-section {
+            padding: 25px;
+            background-color: #e0e0e0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .tech-card {
+            background-color: #2b5797;
+            color: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .tech-icon-box {
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .tech-icon-box.html5 { background-color: #e44d26; }
+        .tech-icon-box.css3 { background-color: #0277bd; }
+        .tech-icon-box.js { background-color: #0073b1; }
+        .tech-icon-box.php { background-color: #5c6bc0; }
+
+        .tech-label {
+            background-color: #4a148c;
+            padding: 8px 0;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            color: #ffffff;
+        }
+
+        /* Family Cards Section (3 Columns) */
+        .family-section {
+            background: linear-gradient(180deg, #00838f 0%, #002752 100%);
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .family-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #80cb52;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background-color: #a5d6a7;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .avatar-circle:hover img {
+            transform: scale(1.15);
+        }
+
+        .tooltip-note {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #333333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .avatar-circle:hover .tooltip-note {
+            opacity: 1;
+        }
+
+        .family-title {
+            color: #80ff80;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .family-quote {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #e0e0e0;
+            padding: 0 10px;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: var(--footer-bg);
+            color: #333333;
+            padding: 20px;
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer p {
+            margin-bottom: 6px;
+        }
+
+        /* Responsive Breakpoints for CSS3 Layout */
+        @media (max-width: 768px) {
+            .banner, .family-section {
+                grid-template-columns: 1fr;
+            }
+            .tech-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-section {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="../24_July_Exp_2/profile.jpg" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrnoeCDSTNv_vdY7dQ3yRL9g0bGCq9ZsTFWUiki63hrQ&s'" alt="Mr. Jinto Joseph Profile Photo" class="profile-pic">
+                <div class="header-title">
+                    <h1>Mr.Jinto Joseph</h1>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#facebook" class="social-btn" title="Facebook">f</a>
+                <a href="#twitter" class="social-btn" title="Twitter">t</a>
+                <a href="#google" class="social-btn" title="Google+">g+</a>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <a href="#personal">Personal</a>
+            <a href="#academic">Academic</a>
+            <a href="#activity">Activity</a>
+            <a href="#others">Others</a>
+        </nav>
+
+        <!-- Banner Bio Section -->
+        <section class="banner">
+            <div class="bio-box">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a volutpat ex, at blandit neque. Cras malesuada consectetur leo, porta malesuada purus volutpat in.
+            </div>
+            <div class="banner-graphic">
+                <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="90" cy="50" r="30" fill="#4dd0e1"/>
+                    <circle cx="150" cy="40" r="35" fill="#26a69a"/>
+                    <circle cx="210" cy="50" r="30" fill="#4dd0e1"/>
+                    <path d="M40 140 Q90 90 140 140 Z" fill="#26a69a"/>
+                    <path d="M90 140 Q150 75 210 140 Z" fill="#00796b"/>
+                    <path d="M160 140 Q210 90 260 140 Z" fill="#26a69a"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Tech Cards Grid (4 Columns) -->
+        <section class="tech-section">
+            <div class="tech-card">
+                <div class="tech-icon-box html5">
+                    <svg width="64" height="64" viewBox="0 0 512 512" fill="#ffffff">
+                        <path d="M108.4 0h295.2L376 439.7 256 473 136 439.7 108.4 0zm229 140.7H170.8l5 56h156.4l-14 156.6-62.2 17.3-62.2-17.3-4-44.7h-40l7.2 81.3 99 27.5 99-27.5 20.2-226.7H170.8"/>
+                    </svg>
+                </div>
+                <div class="tech-label">HTML5</div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon-box css3">
+                    <svg width="64" height="64" viewBox="0 0 512 512" fill="#ffffff">
+                        <path d="M108.4 0h295.2L376 439.7 256 473 136 439.7 108.4 0zm229 140.7H170.8l5 56h156.4l-14 156.6-62.2 17.3-62.2-17.3-4-44.7h-40l7.2 81.3 99 27.5 99-27.5 20.2-226.7H170.8"/>
+                    </svg>
+                </div>
+                <div class="tech-label">CSS3</div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon-box js">
+                    <svg width="64" height="64" viewBox="0 0 512 512" fill="#ffffff">
+                        <path d="M0 0h512v512H0z" fill="#0073b1"/>
+                        <text x="256" y="340" fill="#ffffff" font-size="260" font-weight="bold" font-family="Arial" text-anchor="middle">JS</text>
+                    </svg>
+                </div>
+                <div class="tech-label">Javascript</div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon-box php">
+                    <svg width="64" height="64" viewBox="0 0 512 512" fill="#ffffff">
+                        <text x="256" y="320" fill="#ffffff" font-size="180" font-weight="bold" font-family="Georgia, serif" text-anchor="middle">php</text>
+                    </svg>
+                </div>
+                <div class="tech-label">PHP</div>
+            </div>
+        </section>
+
+        <!-- Family Section (3 Columns Layout) -->
+        <section class="family-section">
+            <div class="family-card">
+                <div class="avatar-circle">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" alt="Father">
+                </div>
+                <div class="family-title">MR. FATHER'S NAME</div>
+                <div class="family-quote">
+                    "It was my father who taught me to value myself. He told me that I was uncommonly beautiful and that I was the most precious thing in his life."
+                </div>
+            </div>
+
+            <div class="family-card">
+                <div class="avatar-circle">
+                    <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=300&q=80" alt="Mother">
+                    <span class="tooltip-note">on mouse over, show the image</span>
+                </div>
+                <div class="family-title">MRS. MOTHER'S NAME</div>
+                <div class="family-quote">
+                    "My mother taught me that we all have the power to achieve our dreams."
+                </div>
+            </div>
+
+            <div class="family-card">
+                <div class="avatar-circle">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" alt="Sister/Brother">
+                </div>
+                <div class="family-title">SIS / BRO NAME</div>
+                <div class="family-quote">
+                    "A sister is both your mirror - and your opposite."
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>Your address</strong></p>
+            <p>© 2026. URK24CS1210 - Web Technology Lab Batch 1. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
