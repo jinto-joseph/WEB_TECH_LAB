@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ex.No:04</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { padding: 10px; background: #fff; }
+    .border { border: 8px solid transparent; border-image: url('images/border-frame.png') 40 stretch; }
+    .header { height: 200px; background-image: url('images/sun.png'), url('images/flower.png'), url('images/apple.png'), url('images/header-bg.jpg'); background-position: 20px 15px, 45px 40px, 70px 70px, center; background-repeat: no-repeat; background-size: 50px, 50px, 50px, cover; position: relative; }
+    .nav { position: absolute; bottom: 0; width: 100%; background: #71717a; display: flex; }
+    .nav a { flex: 1; padding: 8px; text-align: center; color: #333; text-decoration: none; font-size: 14px; }
+    .nav a.active { background: red; color: white; }
+    .sec1 { background: #ffc0cb; padding: 20px; display: flex; justify-content: center; }
+    .fav { width: 250px; background: #15803d; border-radius: 12px; overflow: hidden; text-align: center; }
+    .fav-head { background: #22c55e; padding: 5px; font-weight: bold; font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; }
+    tr:nth-child(odd) { background: #84cc16; } tr:nth-child(even) { background: #166534; }
+    td { padding: 10px; font-size: 13px; font-weight: bold; }
+    td img { width: 22px; float: right; opacity: 0.3; } tr:hover img { opacity: 1; }
+    .sec2 { background: url('images/desk-bg.jpg') center/cover; padding: 30px 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .card { background: white; border-radius: 15px; padding: 20px; width: 280px; }
+    .card h2 { text-align: center; margin-bottom: 15px; }
+    label { display: block; font-size: 12px; margin: 8px 0 4px; font-weight: bold; }
+    input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; background: #e5e7eb; }
+    button { width: 100%; padding: 10px; background: #0066ff; color: white; border: none; border-radius: 5px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+    .footer { background: #ffedd5; padding: 15px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="border">
+    <div class="header">
+      <div class="nav"><a class="active">Home</a><a>About</a><a>Myself</a><a>Others</a></div>
+    </div>
+    <div class="sec1">
+      <div class="fav">
+        <div class="fav-head">Favourites</div>
+        <table>
+          <tr><td>item1 <img src="images/apple.png"></td></tr>
+          <tr><td>item2 <img src="images/apple.png"></td></tr>
+          <tr><td>item3 <img src="images/apple.png"></td></tr>
+          <tr><td>item4 <img src="images/apple.png"></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="sec2">
+      <div class="card">
+        <h2>Sign In</h2>
+        <form><label>Username</label><input placeholder="Enter Username / Email / Phone Number"><label>Password</label><input type="password" placeholder="Enter Password"><button>Sign In</button></form>
+      </div>
+      <div class="card">
+        <h2>Sign Up</h2>
+        <form><label>Name</label><input placeholder="Enter Name"><label>Email</label><input type="email" placeholder="Enter Email"><label>Password</label><input type="password" placeholder="Enter Password"><button>Sign Up</button></form>
+      </div>
+    </div>
+    <div class="footer">
+      <p><em>Your address .</em></p>
+      <p><b><i>&copy; 2020-2021. (Register number) - Web Technology Lab Batch 1. All Rights Reserved.</i></b></p>
+    </div>
+  </div>
+</body>
+</html>
