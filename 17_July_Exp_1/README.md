@@ -45,9 +45,8 @@ To understand and implement core HTML5 building blocks including document struct
 | **07** | Image Embedding & Citation | `<cite>`, `<img>` tag with attributes | [1g.html](./1g.html) | [Run Ex 7](./1g.html) |
 | **08** | Quotations & Abbreviations | `<blockquote>`, `<abbr title="...">` | [1h.html](./1h.html) | [Run Ex 8](./1h.html) |
 | **09** | Inline CSS: Background Colors | Inline `style="background-color: ..."` | [1i.html](./1i.html) | [Run Ex 9](./1i.html) |
-| **10** | Inline CSS: Color & Alignment | Inline `color`, `text-align`, `background-color` | [1i.html](./1i.html) | [Run Ex 10](./1i.html) |
-| **11** | Inline CSS: Custom Borders | Inline `style="border: 2px solid ..."` | [1j.html](./1j.html) | [Run Ex 11](./1j.html) |
-| **12** | **Infosys Portal (Pure Inline)** | **100% Pure Inline CSS Styling (`style="..."`)** | [Scenario.html](./Scenario.html) | [Run Scenario](./Scenario.html) |
+| **10** | Inline CSS: Custom Borders | Inline `style="border: 2px solid ..."` | [1j.html](./1j.html) | [Run Ex 10](./1j.html) |
+| **11** | **Infosys Portal (Pure Inline)** | **100% Pure Inline CSS Styling (`style="..."`)** | [Scenario.html](./Scenario.html) | [Run Scenario](./Scenario.html) |
 
 ---
 

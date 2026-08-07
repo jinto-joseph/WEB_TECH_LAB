@@ -259,7 +259,7 @@
     <div class="workspace">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <div class="sidebar-header">Practice Exercises (12)</div>
+            <div class="sidebar-header">Practice Exercises (11)</div>
             <ul class="exercise-list" id="exerciseList">
                 <!-- Populated via JS -->
             </ul>
@@ -269,7 +269,7 @@
         <main class="stage">
             <div class="stage-bar">
                 <div class="stage-info">
-                    <span id="currentExNum" class="badge">EX 12</span>
+                    <span id="currentExNum" class="badge">EX 11</span>
                     <span id="currentExTitle" class="stage-title">Real-World Scenario — Infosys Portal</span>
                 </div>
                 <div>
@@ -296,9 +296,8 @@
             { num: "Exercise 7", title: "Cite Element & Image Tag", file: "1g.html" },
             { num: "Exercise 8", title: "Quotations & Abbreviations", file: "1h.html" },
             { num: "Exercise 9", title: "Inline CSS Background Colors", file: "1i.html" },
-            { num: "Exercise 10", title: "Inline CSS Color & Alignment", file: "1i.html" },
-            { num: "Exercise 11", title: "Inline CSS Custom Borders", file: "1j.html" },
-            { num: "Exercise 12", title: "Infosys Training Portal Scenario", file: "Scenario.html" }
+            { num: "Exercise 10", title: "Inline CSS Custom Borders", file: "1j.html" },
+            { num: "Exercise 11", title: "Infosys Training Portal Scenario", file: "Scenario.html" }
         ];
 
         const listEl = document.getElementById("exerciseList");
@@ -310,7 +309,7 @@
         exercises.forEach((ex, idx) => {
             const li = document.createElement("li");
             const btn = document.createElement("button");
-            btn.className = `exercise-btn ${idx === 11 ? "active" : ""}`;
+            btn.className = `exercise-btn ${idx === exercises.length - 1 ? "active" : ""}`;
             btn.innerHTML = `
                 <span class="ex-num">${ex.num}</span>
                 <span class="ex-title">${ex.title}</span>

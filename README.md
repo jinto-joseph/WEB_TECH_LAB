@@ -22,6 +22,7 @@
 - **🧪 Experiment 1 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html`
 - **📝 Experiment 2 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html`
 - **🎨 Experiment 3 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html`
+- **🖼️ Experiment 4 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html`
 
 ---
 
@@ -32,7 +33,7 @@
 | **01** | **HTML Fundamentals** | Page structure, headings, formatting, semantics, 100% inline CSS & Infosys Scenario | Completed | [📁 17_July_Exp_1](./17_July_Exp_1/) | [🔗 Launch Exp 1 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html) |
 | **02** | **HTML5 Form & Media Elements** | Form controls, input types, fieldsets, progress bars, audio, video & maps iframe | Completed | [📁 24_July_Exp_2](./24_July_Exp_2/) | [🔗 Launch Exp 2 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html) |
 | **03** | **Responsive Webpage HTML5/CSS3** | CSS3 margins, padding, text/font styling, link pseudo-classes, 4-tech grid & 3-card family layout | Completed | [📁 24_July_Exp_3](./24_July_Exp_3/) | [🔗 Launch Exp 3 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html) |
-| **04** | **JavaScript & DOM** | ES6 Syntax, DOM events, dynamic interactivity & API calls | 🛠️ Upcoming | `Exp_4/` | Auto-published when pushed |
+| **04** | **Styling Web Elements With Images** | CSS border-image frames, multi-layered header backgrounds, hover image opacity table & auth card forms | Completed | [📁 08_August_2026](./08_August_2026/) | [🔗 Launch Exp 4 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html) |
 
 ---
 
