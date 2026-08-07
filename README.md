@@ -28,12 +28,12 @@
 
 ## 🗺️ Semester Experiment Roadmap
 
-| Exp No. | Experiment Title | Key Topics & Technologies | Status | Folder Link | Hosted Live Link |
-| :---: | :--- | :--- | :---: | :---: | :---: |
-| **01** | **HTML Fundamentals** | Page structure, headings, formatting, semantics, 100% inline CSS & Infosys Scenario | Completed | [📁 17_July_Exp_1](./17_July_Exp_1/) | [🔗 Launch Exp 1 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html) |
-| **02** | **HTML5 Form & Media Elements** | Form controls, input types, fieldsets, progress bars, audio, video & maps iframe | Completed | [📁 24_July_Exp_2](./24_July_Exp_2/) | [🔗 Launch Exp 2 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html) |
-| **03** | **Responsive Webpage HTML5/CSS3** | CSS3 margins, padding, text/font styling, link pseudo-classes, 4-tech grid & 3-card family layout | Completed | [📁 24_July_Exp_3](./24_July_Exp_3/) | [🔗 Launch Exp 3 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html) |
-| **04** | **Styling Web Elements With Images** | CSS border-image frames, multi-layered header backgrounds, hover image opacity table & auth card forms | Completed | [📁 08_August_2026](./08_August_2026/) | [🔗 Launch Exp 4 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html) |
+| Exp No. | Experiment Title | Key Topics & Technologies | Status | Folder Link | Hosted Live Link | PDF Report |
+| :---: | :--- | :--- | :---: | :---: | :---: | :---: |
+| **01** | **HTML Fundamentals** | Page structure, headings, formatting, semantics, inline CSS | Completed | [📁 17_July_Exp_1](./17_July_Exp_1/) | [🔗 Exp 1 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html) | [📄 Exp 1 PDF](./17_July_Exp_1/WT%20LAB%20Experiment%201%201210.pdf) |
+| **02** | **HTML5 Form & Media Elements** | Form controls, input types, fieldsets, progress, audio/video & maps | Completed | [📁 24_July_Exp_2](./24_July_Exp_2/) | [🔗 Exp 2 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html) | [📄 Exp 2 PDF](./24_July_Exp_2/webtech%20ex%202.pdf) |
+| **03** | **Responsive Webpage HTML5/CSS3** | CSS3 margins, padding, font styling, link pseudo-classes, grids | Completed | [📁 24_July_Exp_3](./24_July_Exp_3/) | [🔗 Exp 3 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html) | [📄 Exp 3 PDF](./24_July_Exp_3/WT%20LAB%20Experiment%203%201210.pdf) |
+| **04** | **Styling Web Elements With Images** | CSS border-image frames, multi-layered background, auth cards | Completed | [📁 08_August_2026](./08_August_2026/) | [🔗 Exp 4 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html) | 📄 Exp 4 PDF (Placeholder) |
 
 ---
 
