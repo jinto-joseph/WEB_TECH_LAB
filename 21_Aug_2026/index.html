@@ -1,81 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Ex 05 - DOM Elements and Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 5 — Interactive JavaScript DOM Hub</title>
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --accent: #10b981;
+            --bg-dark: #121824;
+            --panel-bg: #1a2232;
+            --card-bg: #222d42;
+            --text-light: #f0f4f8;
+            --text-dim: #94a3b8;
+            --border: #2e3c54;
+            --active-glow: rgba(245, 158, 11, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--primary), #fbbf24);
+            color: #0b0f17;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-title h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .repo-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .repo-link:hover {
+            color: white;
+        }
+
+        /* Main Workspace Layout */
+        .workspace {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background-color: var(--panel-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .exercise-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-light);
+            padding: 12px 14px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .exercise-btn:hover {
+            background-color: var(--card-bg);
+            border-color: var(--border);
+        }
+
+        .exercise-btn.active {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.1));
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--active-glow);
+        }
+
+        .ex-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .exercise-btn.active .ex-num {
+            color: #fbbf24;
+        }
+
+        .ex-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .ex-file {
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: monospace;
+        }
+
+        /* Preview Stage */
+        .stage {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-dark);
+            height: 100%;
+        }
+
+        .stage-bar {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stage-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stage-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .action-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .preview-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <div class="brand-title">
+            <span class="badge">EXP 5</span>
+            <h1>Web Technology Lab — DOM Elements & Events Hub</h1>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center;">
+            <a href="../index.html" class="repo-link">
+                <span>← Back to Record Portal</span>
+            </a>
+            <a href="https://github.com/jinto-joseph/WEB_TECH_LAB" target="_blank" class="repo-link" style="opacity: 0.8;">
+                <span>GitHub Repo ↗</span>
+            </a>
+        </div>
+    </header>
 
-    <h1>Ex.No: 05 — JAVASCRIPT - DOM ELEMENTS AND EVENTS</h1>
+    <div class="workspace">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">Lab Questions (6)</div>
+            <ul class="exercise-list" id="exerciseList">
+                <!-- Populated via JS -->
+            </ul>
+        </aside>
 
-    <h2>Part 1: DOM Elements Selection & Events Demonstration</h2>
+        <!-- Preview Stage -->
+        <main class="stage">
+            <div class="stage-bar">
+                <div class="stage-info">
+                    <span id="currentExNum" class="badge">QUESTION 1</span>
+                    <span id="currentExTitle" class="stage-title">Shortest and Longest Word</span>
+                </div>
+                <div>
+                    <a id="openTabBtn" href="./question1.html" target="_blank" class="action-btn">
+                        <span>↗ Open Full Screen</span>
+                    </a>
+                </div>
+            </div>
 
-    <p id="intro" class="intro">Paragraph 1 with id="intro" and class="intro"</p>
-    <p class="intro">Paragraph 2 with class="intro"</p>
-    <p>Paragraph 3 standard paragraph</p>
-
-    <div id="demo">Original Demo Content</div>
-
-    <br>
-
-    <button onclick="testFindById()">1. getElementById("intro")</button>
-    <button onclick="testFindByTag()">2. getElementsByTagName("p")</button>
-    <button onclick="testFindByClass()">3. getElementsByClassName("intro")</button>
-    <button onclick="testFindBySelector()">4. querySelectorAll("p.intro")</button>
-    <button onclick="testChangeInnerHTML()">5. innerHTML = "Karunya"</button>
-
-    <br><br>
-    <p><strong>DOM Action Log:</strong> <span id="log">Click any button to test.</span></p>
-
-    <hr>~~~
+            <div class="preview-container">
+                <iframe id="previewFrame" src="./question1.html" title="Question Live Preview"></iframe>
+            </div>
+        </main>
+    </div>
 
     <script>
-        // Finding HTML Element by Id
-        var myElement = document.getElementById("intro");
+        const questions = [
+            { num: "Question 1", title: "Shortest and Longest Word", file: "question1.html" },
+            { num: "Question 2", title: "BMI Calculator", file: "question2.html" },
+            { num: "Question 3", title: "Fruit Farm Grid", file: "question3.html" },
+            { num: "Question 4", title: "Currency Convertor", file: "question4.html" },
+            { num: "Question 5", title: "Coin Flip Simulator", file: "question5.html" },
+            { num: "Question 6", title: "Birthday Cake Order Form", file: "question6.html" }
+        ];
 
-        // Finding HTML Elements by Tag Name
-        var xTag = document.getElementsByTagName("p");
+        const listEl = document.getElementById("exerciseList");
+        const iframe = document.getElementById("previewFrame");
+        const titleEl = document.getElementById("currentExTitle");
+        const numEl = document.getElementById("currentExNum");
+        const openBtn = document.getElementById("openTabBtn");
 
-        // Finding HTML Elements by Class Name
-        var xClass = document.getElementsByClassName("intro");
-
-        // Finding HTML Elements by CSS Selectors
-        var xSelector = document.querySelectorAll("p.intro");
-
-        // Attach event handler to the document
-        document.addEventListener("click", function () {
-            console.log("Document clicked");
+        questions.forEach((q, idx) => {
+            const li = document.createElement("li");
+            const btn = document.createElement("button");
+            btn.className = `exercise-btn ${idx === 0 ? "active" : ""}`;
+            btn.innerHTML = `
+                <span class="ex-num">${q.num}</span>
+                <span class="ex-title">${q.title}</span>
+                <span class="ex-file">${q.file}</span>
+            `;
+            btn.onclick = () => loadQuestion(q, btn);
+            li.appendChild(btn);
+            listEl.appendChild(li);
         });
 
-        // Functions for button triggers
-        function testFindById() {
-            var el = document.getElementById("intro");
-            document.getElementById("log").innerHTML = "Found element by ID 'intro': " + el.innerText;
-        }
-
-        function testFindByTag() {
-            var x = document.getElementsByTagName("p");
-            document.getElementById("log").innerHTML = "Found " + x.length + " paragraph tags.";
-        }
-
-        function testFindByClass() {
-            var x = document.getElementsByClassName("intro");
-            document.getElementById("log").innerHTML = "Found " + x.length + " elements with class 'intro'.";
-        }
-
-        function testFindBySelector() {
-            var x = document.querySelectorAll("p.intro");
-            document.getElementById("log").innerHTML = "Found " + x.length + " elements matching 'p.intro'.";
-        }
-
-        function testChangeInnerHTML() {
-            // document.getElementById("demo").innerHTML = "Karunya";
-            document.getElementById("demo").innerHTML = "Karunya";
-            document.getElementById("log").innerHTML = "Updated #demo innerHTML to 'Karunya'";
+        function loadQuestion(q, btnEl) {
+            document.querySelectorAll(".exercise-btn").forEach(b => b.classList.remove("active"));
+            btnEl.classList.add("active");
+            iframe.src = `./${q.file}`;
+            titleEl.textContent = q.title;
+            numEl.textContent = q.num.toUpperCase();
+            openBtn.href = `./${q.file}`;
         }
     </script>
 </body>
-
 </html>
