@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 6 - Birthday Cake Order Form</title>
+</head>
+<body>
+
+    <h1>Birthday Cake Order Form</h1> 
+    <fieldset> 
+        # of 1/2kg Cakes <input type="text" id="small" value="1" /><br /> 
+        # of 1kg Cakes <input type="text" id="medium" value="1" /><br /> 
+        # of 2kg Cakes <input type="text" id="large" value="0" /><br /> 
+        Tip: 
+        <label><input type="radio" value="10" name="tip" /> 10%</label> 
+        <label><input type="radio" value="15" name="tip" checked="checked" /> 15%</label> 
+        <label><input type="radio" value="20" name="tip" /> 20%</label> <br /> 
+        <button id="submit">Calculate Order</button> 
+    </fieldset> 
+    <p> 
+        Cost of order: <span id="price"></span> 
+    </p>
+
+    <script>
+        document.getElementById("submit").addEventListener("click", function() {
+            var small = parseInt(document.getElementById("small").value) || 0;
+            var medium = parseInt(document.getElementById("medium").value) || 0;
+            var large = parseInt(document.getElementById("large").value) || 0;
+
+            var baseCost = (small * 100) + (medium * 200) + (large * 400);
+            var costWithTax = baseCost * 1.09;
+
+            var tipRadios = document.getElementsByName("tip");
+            var tipVal = 15;
+            for (var i = 0; i < tipRadios.length; i++) {
+                if (tipRadios[i].checked) {
+                    tipVal = parseFloat(tipRadios[i].value);
+                    break;
+                }
+            }
+
+            var total = costWithTax + (costWithTax * (tipVal / 100));
+            document.getElementById("price").innerHTML = "Rs. " + total.toFixed(2);
+        });
+
+        // Run default on load
+        document.getElementById("submit").click();
+    </script>
+</body>
+</html>

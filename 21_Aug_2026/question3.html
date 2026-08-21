@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3 - Fruit Farm</title>
+</head>
+<body>
+
+    <h1>Fruit Farm</h1> 
+    <div> 
+        Rows: <input type="text" id="rows" value="3" /> 
+        Columns: <input type="text" id="columns" value="4" /> <br /> 
+        <button onclick="grow();">Plant Garden</button> 
+    </div> 
+    <div id="garden"></div>
+
+    <script>
+        function grow() {
+            var rows = parseInt(document.getElementById("rows").value);
+            var columns = parseInt(document.getElementById("columns").value);
+            var garden = document.getElementById("garden");
+
+            garden.innerHTML = "";
+
+            var arr = ["orange.jpg", "apple.jpg"];
+
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j < columns; j++) {
+                    var number = Math.floor(Math.random() * arr.length);
+                    garden.innerHTML += "<img src='" + arr[number] + "' width='100px' height='100px'>";
+                }
+                garden.innerHTML += "<br>";
+            }
+        }
+
+        // Run default on load
+        grow();
+    </script>
+</body>
+</html>

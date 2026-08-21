@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4 - Currency Convertor</title>
+</head>
+<body>
+
+    <h1>The Currency Convertor</h1>
+
+    <fieldset> 
+        Convert <input type="text" id="data" value="100" /> 
+        <select id="from"> 
+            <option>Indian Rupee</option> 
+            <option>US Dollar</option> 
+        </select> 
+        to 
+        <select id="to"> 
+            <option>US Dollar</option> 
+            <option>Indian Rupee</option> 
+        </select> 
+        <button onclick="convert();">Calculate</button> 
+        <span id="answer"></span> 
+    </fieldset>
+
+    <script>
+        function convert() {
+            var val = parseFloat(document.getElementById("data").value);
+
+            var indexFrom = document.getElementById("from").selectedIndex;
+            var fromVal = document.getElementById("from")[indexFrom].value;
+
+            var indexTo = document.getElementById("to").selectedIndex;
+            var toVal = document.getElementById("to")[indexTo].value;
+
+            var result = 0;
+            if (fromVal.trim() === "Indian Rupee" && toVal.trim() === "US Dollar") {
+                result = val * 0.015;
+            } else if (fromVal.trim() === "US Dollar" && toVal.trim() === "Indian Rupee") {
+                result = val * 67.12;
+            } else {
+                result = val;
+            }
+
+            document.getElementById("answer").innerHTML = "= " + result.toFixed(2);
+        }
+
+        // Run default on load
+        convert();
+    </script>
+</body>
+</html>

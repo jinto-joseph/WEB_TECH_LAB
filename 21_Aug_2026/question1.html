@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1 - Shortest and Longest Word</title>
+</head>
+<body>
+
+    <h1>Question 1: Shortest and Longest Word Finder</h1>
+    <p>Write a function that accepts a string as a parameter and find the shortest and longest word within the string.</p>
+
+    <fieldset>
+        Enter String: <input type="text" id="str" value="Web Development Tutorial" size="30" />
+        <button onclick="findWords();">Find Words</button>
+    </fieldset>
+
+    <p>Shortest: <span id="shortest"></span></p>
+    <p>Longest: <span id="longest"></span></p>
+
+    <script>
+        function findWords() {
+            var str = document.getElementById("str").value;
+            var words = str.trim().split(" ");
+            var shortest = words[0];
+            var longest = words[0];
+
+            for (var i = 0; i < words.length; i++) {
+                if (words[i].length < shortest.length) {
+                    shortest = words[i];
+                }
+                if (words[i].length > longest.length) {
+                    longest = words[i];
+                }
+            }
+
+            document.getElementById("shortest").innerHTML = "'" + shortest + "'";
+            document.getElementById("longest").innerHTML = "'" + longest + "'";
+        }
+
+        // Run default on load
+        findWords();
+    </script>
+</body>
+</html>

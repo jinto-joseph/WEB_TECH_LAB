@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex 05 - DOM Elements and Events</title>
+</head>
+
+<body>
+
+    <h1>Ex.No: 05 — JAVASCRIPT - DOM ELEMENTS AND EVENTS</h1>
+
+    <h2>Part 1: DOM Elements Selection & Events Demonstration</h2>
+
+    <p id="intro" class="intro">Paragraph 1 with id="intro" and class="intro"</p>
+    <p class="intro">Paragraph 2 with class="intro"</p>
+    <p>Paragraph 3 standard paragraph</p>
+
+    <div id="demo">Original Demo Content</div>
+
+    <br>
+
+    <button onclick="testFindById()">1. getElementById("intro")</button>
+    <button onclick="testFindByTag()">2. getElementsByTagName("p")</button>
+    <button onclick="testFindByClass()">3. getElementsByClassName("intro")</button>
+    <button onclick="testFindBySelector()">4. querySelectorAll("p.intro")</button>
+    <button onclick="testChangeInnerHTML()">5. innerHTML = "Karunya"</button>
+
+    <br><br>
+    <p><strong>DOM Action Log:</strong> <span id="log">Click any button to test.</span></p>
+
+    <hr>~~~
+
+    <script>
+        // Finding HTML Element by Id
+        var myElement = document.getElementById("intro");
+
+        // Finding HTML Elements by Tag Name
+        var xTag = document.getElementsByTagName("p");
+
+        // Finding HTML Elements by Class Name
+        var xClass = document.getElementsByClassName("intro");
+
+        // Finding HTML Elements by CSS Selectors
+        var xSelector = document.querySelectorAll("p.intro");
+
+        // Attach event handler to the document
+        document.addEventListener("click", function () {
+            console.log("Document clicked");
+        });
+
+        // Functions for button triggers
+        function testFindById() {
+            var el = document.getElementById("intro");
+            document.getElementById("log").innerHTML = "Found element by ID 'intro': " + el.innerText;
+        }
+
+        function testFindByTag() {
+            var x = document.getElementsByTagName("p");
+            document.getElementById("log").innerHTML = "Found " + x.length + " paragraph tags.";
+        }
+
+        function testFindByClass() {
+            var x = document.getElementsByClassName("intro");
+            document.getElementById("log").innerHTML = "Found " + x.length + " elements with class 'intro'.";
+        }
+
+        function testFindBySelector() {
+            var x = document.querySelectorAll("p.intro");
+            document.getElementById("log").innerHTML = "Found " + x.length + " elements matching 'p.intro'.";
+        }
+
+        function testChangeInnerHTML() {
+            // document.getElementById("demo").innerHTML = "Karunya";
+            document.getElementById("demo").innerHTML = "Karunya";
+            document.getElementById("log").innerHTML = "Updated #demo innerHTML to 'Karunya'";
+        }
+    </script>
+</body>
+
+</html>
