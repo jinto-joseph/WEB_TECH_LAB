@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 6 — JavaScript Timers & Objects Hub</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            font-size: 18px;
+        }
+
+        .back-link {
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background-color: var(--panel-bg);
+            border-right: 1px solid var(--border);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exercise-btn {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 10px 12px;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .exercise-btn:hover, .exercise-btn.active {
+            border-color: #38bdf8;
+            background: #0284c7;
+            color: white;
+        }
+
+        .stage {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            height: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Experiment 6 — Timer Functions and Arrays</h1>
+        <a href="../index.html" class="back-link">← Back to Record Portal</a>
+    </header>
+
+    <div class="workspace">
+        <aside class="sidebar">
+            <button class="exercise-btn active" onclick="loadPage('question1.html', this)">Q1: Digital Clock</button>
+            <button class="exercise-btn" onclick="loadPage('question2.html', this)">Q2: Dynamic Background</button>
+            <button class="exercise-btn" onclick="loadPage('question3.html', this)">Q3: Change Font Size</button>
+            <button class="exercise-btn" onclick="loadPage('question4.html', this)">Q4: Moving Car</button>
+            <button class="exercise-btn" onclick="loadPage('question5.html', this)">Q5: Student Array of Objects</button>
+        </aside>
+
+        <main class="stage">
+            <iframe id="previewFrame" src="./question1.html"></iframe>
+        </main>
+    </div>
+
+    <script>
+        function loadPage(file, btn) {
+            document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('previewFrame').src = './' + file;
+        }
+    </script>
+</body>
+</html>

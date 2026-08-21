@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5 - Student Array of Objects</title>
+</head>
+<body>
+
+    <h1>Student Details & Birth Year Categorization</h1>
+
+    <fieldset style="max-width: 400px; margin-bottom: 20px; padding: 15px;">
+        <legend><strong>Input Student Details</strong></legend>
+        Name: <input type="text" id="name" value="Alex"><br><br>
+        Register No: <input type="text" id="r_num" value="UR22CS105"><br><br>
+        Date of Birth: <input type="text" id="dob" value="15-aug-2003"><br><br>
+        <button onclick="addStudent()">Add Student Object</button>
+    </fieldset>
+
+    <div id="demo"></div>
+
+    <script>
+        var student = [
+            { name: 'John', r_num: 'UR13CS129', dob: '20-apr-1995' },
+            { name: 'Joseph', r_num: 'UR14CS456', dob: '05-jan-1998' }
+        ];
+
+        function displayStudents() {
+            var content = "";
+
+            for (var i = 0; i < student.length; i++) {
+                content += "<p><strong>" + student[i].name + "'s Register Number is " + student[i].r_num + "</strong><br>";
+
+                var dobParts = student[i].dob.split("-");
+                var year = parseInt(dobParts[dobParts.length - 1]);
+
+                if (year < 2000) {
+                    content += "Date of birth is before 2000 (" + student[i].dob + ")</p><hr>";
+                } else {
+                    content += "Date of birth is after 2000 (" + student[i].dob + ")</p><hr>";
+                }
+            }
+
+            document.getElementById("demo").innerHTML = content;
+        }
+
+        function addStudent() {
+            var n = document.getElementById("name").value;
+            var r = document.getElementById("r_num").value;
+            var d = document.getElementById("dob").value;
+
+            if (n && r && d) {
+                student.push({ name: n, r_num: r, dob: d });
+                displayStudents();
+            } else {
+                alert("Please fill in all input fields!");
+            }
+        }
+
+        displayStudents();
+    </script>
+
+</body>
+</html>

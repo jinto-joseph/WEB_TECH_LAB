@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4 - Moving Car</title>
+</head>
+<body>
+
+    <h1>Moving Car Animation</h1>
+    <button onclick="moveRight()">Move</button>
+    <button onclick="stop()">Stop</button>
+    <br><br>
+
+    <div style="border-bottom: 2px dashed #000; position: relative; height: 60px;">
+        <img id="img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'><rect x='10' y='15' width='60' height='15' fill='red'/><circle cx='25' cy='30' r='7' fill='black'/><circle cx='55' cy='30' r='7' fill='black'/></svg>" alt="Car" style="position:relative; left:0px;">
+    </div>
+
+    <script>
+        var imgObj = null;
+        var animate = null;
+
+        function init() {
+            imgObj = document.getElementById('img');
+            imgObj.style.position = 'relative';
+            imgObj.style.left = '0px';
+        }
+
+        function moveRight() {
+            imgObj.style.left = parseInt(imgObj.style.left) + 1 + 'px';
+            animate = setTimeout(moveRight, 10);
+        }
+
+        function stop() {
+            clearTimeout(animate);
+            imgObj.style.left = '0px';
+        }
+
+        window.onload = init;
+    </script>
+
+</body>
+</html>
