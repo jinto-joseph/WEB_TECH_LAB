@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Calculator App</title>
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .box {
+            display: inline-block;
+            color: white;
+            width: 90px;
+            height: 55px;
+            text-align: center;
+            margin: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body style="text-align: center; font-family: Arial, sans-serif;">
+
+    <!-- Title Bar -->
+    <div style="background: black; color: white; padding: 10px; font-weight: bold; font-size: 18px;">
+        Budget Calculator App
+    </div><br>
+
+    <b>Enter Amount that you want to Manage</b><br><br>
+    <input type="text" id="amount" value="15000" style="text-align: center;"><br><br>
+
+    <b>How would you like to divide your money?</b><br><br>
+    Room Rent(%): <input type="text" id="rent" size="3" value="50">
+    Accessories(%): <input type="text" id="acc" size="3" value="20">
+    Emergency(%): <input type="text" id="emg" size="3" value="20">
+    Saving(%): <input type="text" id="save" size="3" value="10"><br><br>
+
+    <button id="btn" style="background: #000080; color: white; padding: 6px 16px; border: none; cursor: pointer;">
+        Evaluate My Money
+    </button><br><br>
+
+    <!-- Output Display Cards -->
+    <div id="results" style="display: none;">
+        <div class="box" style="background: blue;">Room Rent<br>Rs.<span id="r1"></span></div>
+        <div class="box" style="background: green;">Accessories<br>Rs.<span id="r2"></span></div>
+        <div class="box" style="background: #000080;">Emergency<br>Rs.<span id="r3"></span></div>
+        <div class="box" style="background: deeppink;">Saving<br>Rs.<span id="r4"></span></div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                let amt = parseInt($('#amount').val());
+                let p1 = parseInt($('#rent').val());
+                let p2 = parseInt($('#acc').val());
+                let p3 = parseInt($('#emg').val());
+                let p4 = parseInt($('#save').val());
+
+                // Check if total percentage is 100
+                if ((p1 + p2 + p3 + p4) !== 100) {
+                    alert("Amount cannot be divided! Total percentage must be 100%.");
+                    return;
+                }
+
+                // Calculate and display values
+                $('#r1').text(amt * p1 / 100);
+                $('#r2').text(amt * p2 / 100);
+                $('#r3').text(amt * p3 / 100);
+                $('#r4').text(amt * p4 / 100);
+                $('#results').show();
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Workshop</title>
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #glass {
+            width: 70px;
+            height: 35px;
+            background: #2e7d32;
+            margin: 0 auto;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+        }
+        #body {
+            width: 160px;
+            height: 40px;
+            background: #76c043;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        .tyre {
+            width: 45px;
+            height: 45px;
+            background: #1a237e;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 15px;
+        }
+        button {
+            border: 1px solid #64b5f6;
+            background: white;
+            color: #1976d2;
+            padding: 6px 12px;
+            cursor: pointer;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body style="text-align: center; font-family: Arial, sans-serif;">
+
+    <h3 style="color: dodgerblue;">3. Car Workshop</h3><br>
+
+    <!-- Car Visual -->
+    <div style="margin-bottom: 40px;">
+        <div id="glass"></div>
+        <div id="body"></div>
+        <div style="margin-top: -15px;">
+            <div class="tyre"></div>
+            <div class="tyre"></div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <button id="bGlass">Change Glass Color</button>
+    <button id="bBody">Change Body Color</button>
+    <button id="bInc">Tyre Size Increase</button>
+    <button id="bDec">Tyre Size Decrease</button>
+    <button id="bReset">Reset</button>
+
+    <script>
+        $(document).ready(function(){
+            let gColors = ['#2e7d32', 'cyan', 'black', 'orange', 'purple'];
+            let bColors = ['#76c043', 'red', 'blue', 'orange', 'yellow'];
+            let gi = 0, bi = 0, size = 45;
+
+            // Change Glass Tint
+            $('#bGlass').click(function(){
+                gi = (gi + 1) % gColors.length;
+                $('#glass').css('background', gColors[gi]);
+            });
+
+            // Change Body Color
+            $('#bBody').click(function(){
+                bi = (bi + 1) % bColors.length;
+                $('#body').css('background', bColors[bi]);
+            });
+
+            // Increase Tyre Size
+            $('#bInc').click(function(){
+                size += 5;
+                $('.tyre').css({ width: size + 'px', height: size + 'px' });
+            });
+
+            // Decrease Tyre Size
+            $('#bDec').click(function(){
+                if (size > 15) size -= 5;
+                $('.tyre').css({ width: size + 'px', height: size + 'px' });
+            });
+
+            // Reset
+            $('#bReset').click(function(){
+                size = 45;
+                $('#glass').css('background', '#2e7d32');
+                $('#body').css('background', '#76c043');
+                $('.tyre').css({ width: '45px', height: '45px' });
+            });
+        });
+    </script>
+
+</body>
+</html>

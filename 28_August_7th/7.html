@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>The setTimeout() Method</h2>
+<p>Additional arguments passed to setTimeout() are passed to the callback function.</p>
+<h2 id="demo"></h2>
+<script>
+// Call for a timeout
+setTimeout(showMessage, 2000, "Hello", "John");
+function showMessage(greeting, name) {
+  myDisplayer(greeting + " " + name);
+}
+// Function to display any text
+function myDisplayer(text) {
+  let demo = document.getElementById("demo"); 
+  demo.innerHTML += text + "<br>";
+}
+</script>
+</body>
+</html>

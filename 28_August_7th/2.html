@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>The setTimout() Method</h2>
+
+<p>Wait 3 seconds (3000 milliseconds) for this page to change.</p>
+<h2 id="demo"></h2>
+<script>
+// Call a timeout
+setTimeout(function() {
+  myDisplayer("Hello!");
+}, 3000);
+// Function to display any text
+function myDisplayer(text) {
+  let demo = document.getElementById("demo"); 
+  demo.innerHTML += text + "<br>";
+}
+</script>
+</body>
+</html>

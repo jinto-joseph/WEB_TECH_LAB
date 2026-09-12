@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>SlideShow Example</h2>
+
+<p id="demo"></p>
+
+<img id="slide" src="img_nature.jpg" style="width:100%;max-width:600px">
+<br><br>
+<button onclick="startSlides()">Start</button>
+<button onclick="stopSlides()">Stop</button>
+
+<script>
+const images = [
+  "img_nature.jpg",
+  "img_snowtops.jpg",
+  "img_mountains.jpg"
+];
+
+let index = 0;
+let timer;
+
+function showNextSlide() {
+  index = (index + 1) % images.length;
+  document.getElementById("slide").src = images[index];
+}
+
+function startSlides() {
+  if (!timer) {
+    timer = setInterval(showNextSlide, 3000);
+  }
+}
+
+function stopSlides() {
+  clearInterval(timer);
+  timer = undefined;
+}
+</script>
+
+</body>
+</html>

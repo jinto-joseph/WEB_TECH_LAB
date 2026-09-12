@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>The clearInterval() Method</h2>
+<button onclick="startClock()">Start Clock</button>
+<button onclick="stopClock()">Stop Clock</button>
+<h3 id="demo"></h3>
+<script>
+let timer;
+function startClock() {
+  if (!timer) {
+    timer = setInterval(showTime, 1000);
+  }
+}
+function showTime() {
+  const date = new Date();
+  myDisplayer(date.toLocaleTimeString());
+}
+function stopClock() {
+  clearInterval(timer);
+  timer = undefined;
+}
+// Function to display any text
+function myDisplayer(text) {
+  let demo = document.getElementById("demo"); 
+  demo.innerHTML = text;
+}
+</script>
+</body>
+</html>

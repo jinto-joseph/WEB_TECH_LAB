@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>The setInterval() Method</h2>
+<h2 id="demo"></h2>
+<script>
+setInterval(showTime, 1000);
+function showTime() {
+  const date = new Date();
+  myDisplayer(date.toLocaleTimeString());
+}
+// Function to display any text
+function myDisplayer(text) {
+  let demo = document.getElementById("demo"); 
+  demo.innerHTML = text;
+}
+</script>
+</body>
+</html>
+

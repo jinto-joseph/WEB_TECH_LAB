@@ -13,7 +13,6 @@
         <button onclick="grow();">Plant Garden</button> 
     </div> 
     <div id="garden"></div>
-
     <script>
         function grow() {
             var rows = parseInt(document.getElementById("rows").value);
@@ -32,8 +31,6 @@
                 garden.innerHTML += "<br>";
             }
         }
-
-        // Run default on load
         grow();
     </script>
 </body>

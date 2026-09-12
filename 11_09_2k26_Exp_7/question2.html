@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cake Shop</title>
+    <!-- jQuery Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .cake {
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .cake img {
+            width: 110px;
+            height: 110px;
+            display: block;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            object-fit: cover;
+        }
+
+        input {
+            width: 400px;
+            padding: 4px;
+        }
+    </style>
+</head>
+
+<body style="text-align: center; font-family: Arial, sans-serif;">
+
+    <!-- Top Header Bar -->
+    <div style="background: #b30000; color: white; padding: 8px; font-weight: bold; font-size: 16px;">
+        CAKE SHOP
+    </div><br>
+
+    <!-- 4 Cakes Row -->
+    <div>
+        <div class="cake">
+            <img src="https://jaipurcakengifts.com/images/thumbs/000/0001950_rainbow-colour-design-cake_550.webp"
+                alt="Color Cake">
+            Color Cake - Rs. 300
+        </div>
+        <div class="cake">
+            <img src="https://img.magnific.com/free-photo/decadent-chocolate-cake-with-dripping-ganache_84443-82411.jpg?semt=ais_hybrid&w=740&q=80"
+                alt="Brown Cake">
+            Brown Cake - Rs. 200
+        </div>
+        <div class="cake">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLRPS8Ek4YECjfgq1xu7Ls11nKlDpbhfZqQ3s2nKKhRcT7ehYVo7k8ikE&s=10"
+                alt="Milky Cake">
+            Milky Cake - Rs. 250
+        </div>
+        <div class="cake">
+            <img src="https://www.fnp.com/images/pr/l/v20250612185112/blackforest-cake-1kg_1.jpg"
+                alt="Black Forest Cake">
+            Black Forest Cake - Rs. 350
+        </div>
+    </div>
+
+    <h3 style="color: blue;">Order Cake</h3>
+    Color Cake(Quantity)<br><input type="number" id="c1" value="2"><br><br>
+    Brown Cake(Quantity)<br><input type="number" id="c2" value="1"><br><br>
+    Milky Cake(Quantity)<br><input type="number" id="c3" value="2"><br><br>
+    Black Forest Cake(Quantity)<br><input type="number" id="c4" value="1"><br><br>
+
+    <button id="orderBtn"
+        style="background: dodgerblue; color: white; padding: 6px 25px; border: none; cursor: pointer;">
+        Place Order
+    </button><br>
+
+    <hr style="width: 420px; border: 1px solid blue; margin: 15px auto;">
+
+    <h3 style="color: green; margin: 5px 0;">Purchase Order Bill!!</h3>
+    <div style="margin-top: 10px;">
+        <span style="background: green; color: white; padding: 6px 15px; font-weight: bold;">Total Price</span>
+        <span id="bill" style="color: red; font-size: 20px; font-weight: bold; margin-left: 10px;">Rs.1650</span>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#orderBtn').click(function () {
+                let q1 = parseInt($('#c1').val()) || 0;
+                let q2 = parseInt($('#c2').val()) || 0;
+                let q3 = parseInt($('#c3').val()) || 0;
+                let q4 = parseInt($('#c4').val()) || 0;
+
+                let total = (q1 * 300) + (q2 * 200) + (q3 * 250) + (q4 * 350);
+                $('#bill').text("Rs." + total);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

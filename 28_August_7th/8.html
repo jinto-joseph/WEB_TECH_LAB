@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Timers</h1>
+<h2>A Countdown Example</h2>
+<button onclick="startCountdown()">Start Countdown</button>
+<h3 id="demo"></h3>
+<script>
+let timer;
+function startCountdown() {
+  clearInterval(timer);
+  let count = 10;
+  myDisplayer(count);
+  timer = setInterval(function() {
+    count--;
+    myDisplayer(count);
+    if (count === 0) {
+      clearInterval(timer);
+      myDisplayer("Finished!");
+    }
+  }, 1000);
+}
+// Function to display any text
+function myDisplayer(text) {
+  let demo = document.getElementById("demo"); 
+  demo.innerHTML = text;
+}
+</script>
+</body>
+</html>

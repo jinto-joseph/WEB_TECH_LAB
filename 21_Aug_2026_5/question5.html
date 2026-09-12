@@ -5,7 +5,6 @@
     <title>Question 5 - Coin Flip</title>
 </head>
 <body>
-
     <h1>Heads or Tails?</h1> 
     <div> 
         <img src="heads.jpg" id="coin" width="120" height="120" /> <br /> 
@@ -15,16 +14,12 @@
         Heads Total: <span id="num_heads">0</span><br /> 
         Tails Total: <span id="num_tails">0</span> 
     </p>
-
     <script>
         var headsCount = 0;
         var tailsCount = 0;
-
         document.getElementById("flip").addEventListener("click", flipFunction);
-
         function flipFunction() {
             var isHeads = Math.random() < 0.5;
-
             if (isHeads) {
                 document.getElementById("coin").src = "heads.jpg";
                 headsCount++;
