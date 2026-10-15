@@ -23,33 +23,39 @@
 - **📝 Experiment 2 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html`
 - **🎨 Experiment 3 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html`
 - **🖼️ Experiment 4 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html`
+- **⚙️ Experiment 5 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/21_Aug_2026_5/index.html`
+- **⏱️ Experiment 6 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/21_Aug_2026_6/index.html`
+- **⚡ Experiment 7 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/11_09_2k26_Exp_7/index.html`
+- **⚛️ Experiment 8 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/index.html`
+- **🚀 Experiment 8 Standalone React App:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/react-ui-lab/index.html`
 
 ---
 
 ## 🗺️ Semester Experiment Roadmap
 
-| Exp No. | Experiment Title | Key Topics & Technologies | Status | Folder Link | Hosted Live Link | PDF Report |
-| :---: | :--- | :--- | :---: | :---: | :---: | :---: |
-| **01** | **HTML Fundamentals** | Page structure, headings, formatting, semantics, inline CSS | Completed | [📁 17_July_Exp_1](./17_July_Exp_1/) | [🔗 Exp 1 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html) | [📄 Exp 1 PDF](./17_July_Exp_1/WT%20LAB%20Experiment%201%201210.pdf) |
-| **02** | **HTML5 Form & Media Elements** | Form controls, input types, fieldsets, progress, audio/video & maps | Completed | [📁 24_July_Exp_2](./24_July_Exp_2/) | [🔗 Exp 2 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html) | [📄 Exp 2 PDF](./24_July_Exp_2/webtech%20ex%202.pdf) |
-| **03** | **Responsive Webpage HTML5/CSS3** | CSS3 margins, padding, font styling, link pseudo-classes, grids | Completed | [📁 24_July_Exp_3](./24_July_Exp_3/) | [🔗 Exp 3 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html) | [📄 Exp 3 PDF](./24_July_Exp_3/WT%20LAB%20Experiment%203%201210.pdf) |
-| **04** | **Styling Web Elements With Images** | CSS border-image frames, multi-layered background, auth cards | Completed | [📁 08_August_2026](./08_August_2026/) | [🔗 Exp 4 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html) | 📄 Exp 4 PDF (Placeholder) |
+| Exp No. | Experiment Title | Key Topics & Technologies | Status | Folder Link | Hosted Live Link |
+| :---: | :--- | :--- | :---: | :---: | :---: |
+| **01** | **HTML Fundamentals** | Page structure, headings, formatting, semantics, inline CSS | Completed | [📁 17_July_Exp_1](./17_July_Exp_1/) | [🔗 Exp 1 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/17_July_Exp_1/index.html) |
+| **02** | **HTML5 Form & Media Elements** | Form controls, input types, fieldsets, progress, audio/video & maps | Completed | [📁 24_July_Exp_2](./24_July_Exp_2/) | [🔗 Exp 2 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_2/exercise1.html) |
+| **03** | **Responsive Webpage HTML5/CSS3** | CSS3 margins, padding, font styling, link pseudo-classes, grids | Completed | [📁 24_July_Exp_3](./24_July_Exp_3/) | [🔗 Exp 3 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/24_July_Exp_3/exercise1.html) |
+| **04** | **Styling Web Elements With Images** | CSS border-image frames, multi-layered background, auth cards | Completed | [📁 08_August_2026](./08_August_2026/) | [🔗 Exp 4 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/08_August_2026/lab4.html) |
+| **05** | **JavaScript Functions & Form Events** | JS event listeners, validation, form calculations, DOM manipulation | Completed | [📁 21_Aug_2026_5](./21_Aug_2026_5/) | [🔗 Exp 5 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/21_Aug_2026_5/index.html) |
+| **06** | **JavaScript Timer Functions & Arrays** | Timers (setTimeout, setInterval), Date methods, Class & Object Arrays | Completed | [📁 21_Aug_2026_6](./21_Aug_2026_6/) | [🔗 Exp 6 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/21_Aug_2026_6/index.html) |
+| **07** | **Working with jQuery** | jQuery DOM selectors, animations, dynamic event bindings | Completed | [📁 11_09_2k26_Exp_7](./11_09_2k26_Exp_7/) | [🔗 Exp 7 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/11_09_2k26_Exp_7/index.html) |
+| **08** | **Building Component-Based UI With React** | React 19, JSX, useState hooks, component hierarchy, light/dark mode | Completed | [📁 Exp_08](./Exp_08/) | [🔗 Exp 8 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/index.html) |
 
 ---
 
-## ⚡ How to Add Next Experiments (Simple Workflow)
+## ⚡ How to Push and Update GitHub Pages
 
-When you do a new experiment (e.g. Exp 4):
-1. Create a folder in this repo (e.g. `Exp_4`).
-2. Add your HTML files inside `Exp_4`.
-3. Push to GitHub:
-   ```bash
-   git add .
-   git commit -m "Added Experiment 4"
-   git push origin master
-   ```
-4. GitHub Pages will automatically host your new experiment live at:
-   `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_4/`
+Whenever you add or update experiments:
+```bash
+git add .
+git commit -m "Update experiments and documentation"
+git push origin master
+```
+GitHub Pages will automatically publish the changes live at:
+`https://jinto-joseph.github.io/WEB_TECH_LAB/`
 
 ---
 

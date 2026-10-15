@@ -3,10 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduDashboard</title>
+    <title>EduDashboard — React UI Components | URK24CS1210</title>
+    <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Standalone Compiled CSS -->
+    <link rel="stylesheet" href="./assets/bundle.css" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Production React Bundle (Loads instantly in browser, file://, & GitHub Pages) -->
+    <script src="./assets/bundle.js"></script>
+
+    <!-- Vite development hot-reload entrypoint (Only active during 'npm run dev') -->
+    <script type="module">
+      if (!window.__REACT_APP_MOUNTED__ && (window.location.port === '5173' || window.__vite_plugin_react_preamble_installed__)) {
+        import('./src/main.jsx');
+      }
+    </script>
   </body>
 </html>

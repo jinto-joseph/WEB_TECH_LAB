@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 8 — React UI Components Hub | URK24CS1210</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+            --accent-cyan: #06b6d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-title-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .react-logo-badge {
+            background: rgba(97, 218, 251, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .portal-btn {
+            color: #38bdf8;
+            text-decoration: none;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portal-btn:hover {
+            border-color: #38bdf8;
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .launch-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
+        }
+
+        .workspace {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background-color: var(--panel-bg);
+            border-right: 1px solid var(--border);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-dim);
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .view-btn {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 12px 14px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+            font-size: 13.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn:hover {
+            border-color: #6366f1;
+            background: #1e293b;
+        }
+
+        .view-btn.active {
+            border-color: #6366f1;
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .info-card {
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-dim);
+        }
+
+        .info-card strong {
+            color: var(--text-light);
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .stage {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            height: 100%;
+            background-color: #0b1120;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .stage-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px;
+            font-size: 13.5px;
+            color: var(--text-dim);
+        }
+
+        .stage-bar strong {
+            color: var(--text-light);
+        }
+
+        .open-tab-btn {
+            color: #38bdf8;
+            text-decoration: none;
+            background: #1e293b;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .open-tab-btn:hover {
+            background: #334155;
+            color: #fff;
+        }
+
+        .stage-content {
+            flex: 1;
+            position: relative;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ffffff;
+        }
+
+        .code-container {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            overflow: auto;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
+            white-space: pre;
+        }
+
+        .record-doc-container {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #0f172a;
+            color: var(--text-light);
+            padding: 30px;
+            overflow: auto;
+            line-height: 1.6;
+        }
+
+        .record-doc-container h2 {
+            font-size: 22px;
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .record-doc-container h3 {
+            font-size: 16px;
+            color: #cbd5e1;
+            margin: 20px 0 8px;
+        }
+
+        .record-doc-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .record-doc-container th,
+        .record-doc-container td {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            text-align: left;
+            font-size: 13.5px;
+        }
+
+        .record-doc-container th {
+            background: #151c28;
+            color: #94a3b8;
+            width: 180px;
+        }
+
+        @media (max-width: 900px) {
+            .workspace {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                max-height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title-box">
+            <span class="react-logo-badge">⚛️ React 19</span>
+            <h1>Experiment 8 — Single Page Component Dashboard (EduDashboard)</h1>
+        </div>
+        <div class="header-links">
+            <a href="../index.html" class="portal-btn">← Back to Record Portal</a>
+            <a href="./react-ui-lab/index.html" target="_blank" class="launch-btn">🚀 Open Full Standalone App ↗</a>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <aside class="sidebar">
+            <div class="sidebar-section-title">Navigation Views</div>
+            <div class="nav-group">
+                <button class="view-btn active" onclick="showLiveApp(this)">
+                    <span>🚀 Live EduDashboard App</span>
+                    <span>→</span>
+                </button>
+                <button class="view-btn" onclick="showRecordDoc(this)">
+                    <span>📋 Experiment 8 Lab Sheet</span>
+                    <span>→</span>
+                </button>
+                <button class="view-btn" onclick="showCode('app', this)">
+                    <span>⚛️ App.jsx (Root Component)</span>
+                    <span>→</span>
+                </button>
+                <button class="view-btn" onclick="showCode('navbar', this)">
+                    <span>🧩 Navbar.jsx Component</span>
+                    <span>→</span>
+                </button>
+                <button class="view-btn" onclick="showCode('statcard', this)">
+                    <span>📊 StatCard.jsx Component</span>
+                    <span>→</span>
+                </button>
+            </div>
+
+            <div class="sidebar-section-title">Lab Record Metadata</div>
+            <div class="info-card">
+                <p><strong>Experiment:</strong> No. 8</p>
+                <p><strong>Title:</strong> React UI Components</p>
+                <p><strong>Reg No:</strong> URK24CS1210</p>
+                <p><strong>Course:</strong> 23CS2049 Web Tech Lab</p>
+                <p><strong>Technologies:</strong> React 19, JSX, Hooks (useState), Modular Components, Theme Switching</p>
+                <span class="info-badge">VERIFIED &amp; READY</span>
+            </div>
+        </aside>
+
+        <main class="stage">
+            <div class="stage-bar">
+                <span id="stageTitle">Viewing: <strong>Live EduDashboard Application</strong></span>
+                <a id="externalLink" href="./react-ui-lab/index.html" target="_blank" class="open-tab-btn">Open in New Window ↗</a>
+            </div>
+
+            <div class="stage-content">
+                <!-- Live Application Iframe -->
+                <iframe id="previewFrame" src="./react-ui-lab/index.html" title="EduDashboard React Application"></iframe>
+
+                <!-- Lab Record Document View -->
+                <div id="recordDocView" class="record-doc-container">
+                    <h2>Experiment 8: Building Component-Based UI With React</h2>
+                    <table>
+                        <tr>
+                            <th>Course</th>
+                            <td>23CS2049 - Web Technology Lab</td>
+                        </tr>
+                        <tr>
+                            <th>Student Register No</th>
+                            <td><strong>URK24CS1210</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Exercise Title</th>
+                            <td>Single Page Academic Dashboard (EduDashboard) using React 19</td>
+                        </tr>
+                        <tr>
+                            <th>Live Hosted URL</th>
+                            <td><code>https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/react-ui-lab/index.html</code></td>
+                        </tr>
+                    </table>
+
+                    <h3>Aim:</h3>
+                    <p>To design and develop a single page component-based academic overview dashboard (EduDashboard) utilizing React 19, demonstrating modular components, props, useState hooks, dynamic list management, and light/dark theme switching.</p>
+
+                    <h3>Key Features &amp; Concepts Demonstrated:</h3>
+                    <ul style="padding-left: 20px; margin-top: 8px;">
+                        <li><strong>Component Hierarchy:</strong> Modular separation of concerns with <code>Navbar</code>, <code>StatCard</code>, and <code>App</code> parent component.</li>
+                        <li><strong>State Management (<code>useState</code>):</strong> Controlled input state for adding tasks, toggling completion, dynamic filtering, and dark/light mode toggle.</li>
+                        <li><strong>Props Communication:</strong> Passing custom titles, values, status indicators, and event callbacks (<code>onToggleTheme</code>) through props.</li>
+                        <li><strong>Dynamic Rendering:</strong> Array mapping for courses and interactive task list with conditional styling.</li>
+                        <li><strong>Responsive CSS3 Design:</strong> Mobile, tablet, and desktop flexbox/grid adaptation with synchronized dark theme.</li>
+                    </ul>
+                </div>
+
+                <!-- Code Container -->
+                <div id="codeView" class="code-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const codeSnippets = {
+            app: `// src/App.jsx - Root Component with State & Child Hierarchy
+import { useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import StatCard from "./components/StatCard";
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([
+    { id: 1, text: "Complete Web Tech Exp 8 Record", completed: true },
+    { id: 2, text: "Explore React useState & Props", completed: false },
+    { id: 3, text: "Deploy updated portfolio to GitHub Pages", completed: false },
+  ]);
+
+  const courses = [
+    { code: "23CS2049", name: "Web Technology Lab", credits: 2, progress: 90 },
+    { code: "23CS2031", name: "Database Management Systems", credits: 3, progress: 85 },
+    { code: "23CS2055", name: "Machine Learning Foundations", credits: 4, progress: 75 },
+    { code: "23CS2042", name: "Computer Networks & Protocols", credits: 3, progress: 80 },
+  ];
+
+  function addTask() {
+    if (task.trim() === "") return;
+    setTasks([{ id: Date.now(), text: task.trim(), completed: false }, ...tasks]);
+    setTask("");
+  }
+
+  function toggleTask(id) {
+    setTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+  }
+
+  function deleteTask(id) {
+    setTasks(tasks.filter(t => t.id !== id));
+  }
+
+  return (
+    <div className={darkMode ? "app dark" : "app"}>
+      <Navbar darkMode={darkMode} onToggleTheme={() => setDarkMode(!darkMode)} />
+      <main className="dashboard">
+        {/* Metric Cards, Course List & Task Planner */}
+      </main>
+    </div>
+  );
+}
+
+export default App;`,
+
+            navbar: `// src/components/Navbar.jsx - Navigation & Theme Switcher
+function Navbar({ darkMode, onToggleTheme }) {
+  return (
+    <nav className="navbar">
+      <div className="brand">
+        <span className="brand-icon">🎓</span>
+        <div className="brand-text">
+          <h2>EduDashboard</h2>
+          <span className="badge-react">React 19</span>
+        </div>
+      </div>
+
+      <div className="nav-links">
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#tasks">Tasks</a>
+        <a href="../../index.html" className="portfolio-link">← Portfolio Hub</a>
+      </div>
+
+      <button className="profile-btn" onClick={onToggleTheme}>
+        <span>{darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}</span>
+      </button>
+    </nav>
+  );
+}
+
+export default Navbar;`,
+
+            statcard: `// src/components/StatCard.jsx - Reusable Statistics Metric Card
+function StatCard({ title, value, icon, change, changeType }) {
+  return (
+    <div className="card">
+      <div className="card-top">
+        <span className="card-icon">{icon || "📌"}</span>
+        {change && (
+          <span className={\`card-badge \${changeType || "neutral"}\`}>
+            {change}
+          </span>
+        )}
+      </div>
+      <h3>{title}</h3>
+      <p className="card-value">{value}</p>
+    </div>
+  );
+}
+
+export default StatCard;`
+        };
+
+        function resetViews() {
+            document.getElementById('previewFrame').style.display = 'none';
+            document.getElementById('recordDocView').style.display = 'none';
+            document.getElementById('codeView').style.display = 'none';
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        function showLiveApp(btn) {
+            resetViews();
+            btn.classList.add('active');
+            document.getElementById('previewFrame').style.display = 'block';
+            document.getElementById('stageTitle').innerHTML = 'Viewing: <strong>Live EduDashboard Application</strong>';
+            document.getElementById('externalLink').href = './react-ui-lab/index.html';
+        }
+
+        function showRecordDoc(btn) {
+            resetViews();
+            btn.classList.add('active');
+            document.getElementById('recordDocView').style.display = 'block';
+            document.getElementById('stageTitle').innerHTML = 'Viewing: <strong>Experiment 8 Lab Sheet &amp; Theory</strong>';
+            document.getElementById('externalLink').href = './react-ui-lab/index.html';
+        }
+
+        function showCode(fileKey, btn) {
+            resetViews();
+            btn.classList.add('active');
+            const codeView = document.getElementById('codeView');
+            codeView.style.display = 'block';
+            codeView.textContent = codeSnippets[fileKey] || '// Code snippet not found';
+            document.getElementById('stageTitle').innerHTML = 'Viewing Source: <strong>' + fileKey + '.jsx</strong>';
+            document.getElementById('externalLink').href = './react-ui-lab/src/' + (fileKey === 'app' ? 'App.jsx' : 'components/' + (fileKey === 'navbar' ? 'Navbar.jsx' : 'StatCard.jsx'));
+        }
+    </script>
+</body>
+</html>

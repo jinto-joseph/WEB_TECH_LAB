@@ -1,14 +1,16 @@
 {
   "name": "react-ui-lab",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "bundle": "esbuild src/main.jsx --bundle --outfile=assets/bundle.js --format=iife --jsx=automatic --minify --define:process.env.NODE_ENV=\"'production'\"",
+    "build": "vite build && npm run bundle",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "esbuild": "^0.25.0",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   },
