@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 9 — MongoDB Shell Commands | URK24CS1210</title>
+    <meta name="description" content="Web Technology Lab Experiment 9: Working with MongoDB Using Shell Commands (mongosh) — URK24CS1210, 23CS2049">
+    <style>
+        :root {
+            --primary:       #10b981;
+            --primary-light: #34d399;
+            --bg-dark:       #0b0f17;
+            --panel-bg:      #111827;
+            --card-bg:       #151c28;
+            --card-header:   #1a2436;
+            --text-light:    #f1f5f9;
+            --text-dim:      #94a3b8;
+            --border:        #1f2d40;
+            --code-bg:       #0d131f;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+
+        header { background: var(--panel-bg); border-bottom: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .mongo-badge { background: rgba(16,185,129,.15); color: #34d399; border: 1px solid rgba(52,211,153,.35); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+        header h1 { font-size: 17px; font-weight: 700; }
+        .header-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .portal-btn { color: var(--primary-light); text-decoration: none; background: var(--bg-dark); border: 1px solid var(--border); padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; transition: background .2s,border-color .2s; }
+        .portal-btn:hover { background: #1a2436; border-color: var(--primary); }
+
+        .page-wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; display: flex; flex-direction: column; gap: 28px; }
+
+        .hero { background: linear-gradient(135deg,#052e16 0%,#064e3b 45%,#065f46 100%); border: 1px solid rgba(16,185,129,.3); border-radius: 10px; padding: 32px 28px; position: relative; overflow: hidden; }
+        .hero::before { content: "🍃"; position: absolute; right: 28px; top: 50%; transform: translateY(-50%); font-size: 80px; opacity: .12; pointer-events: none; }
+        .hero-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: #34d399; text-transform: uppercase; margin-bottom: 8px; }
+        .hero h2 { font-size: 26px; font-weight: 800; line-height: 1.25; margin-bottom: 12px; }
+        .hero p { color: #a7f3d0; font-size: 14px; max-width: 580px; }
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+        .hero-meta-item { background: rgba(0,0,0,.3); border: 1px solid rgba(52,211,153,.2); padding: 8px 16px; border-radius: 8px; font-size: 13px; }
+        .hero-meta-item span { color: #34d399; font-weight: 700; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .card-head { background: var(--card-header); border-bottom: 1px solid var(--border); padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .card-head h3 { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .card-body { padding: 22px; }
+
+        .record-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .record-table th { background: #0d131f; color: var(--text-dim); font-weight: 600; width: 200px; padding: 11px 16px; text-align: left; border: 1px solid var(--border); }
+        .record-table td { padding: 11px 16px; border: 1px solid var(--border); color: var(--text-light); }
+        .host-link-box { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .host-link-box span { font-family: monospace; font-size: 12px; color: var(--primary-light); word-break: break-all; }
+        .copy-btn { background: rgba(16,185,129,.15); color: #34d399; border: 1px solid rgba(52,211,153,.35); padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: background .2s; white-space: nowrap; }
+        .copy-btn:hover { background: rgba(16,185,129,.3); }
+
+        .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; border: 1px solid; letter-spacing: .04em; }
+        .badge-green { background: rgba(16,185,129,.15); color: #34d399; border-color: rgba(52,211,153,.35); }
+        .badge-cyan  { background: rgba(6,182,212,.15);  color: #22d3ee; border-color: rgba(34,211,238,.35); }
+        .badge-amber { background: rgba(245,158,11,.15); color: #fbbf24; border-color: rgba(251,191,36,.35); }
+        .badge-slate { background: rgba(71,85,105,.25);  color: #94a3b8; border-color: rgba(100,116,139,.35); }
+        .badge-red   { background: rgba(239,68,68,.15);  color: #f87171; border-color: rgba(248,113,113,.3); }
+
+        .cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .cmp-table th { background: #0d131f; padding: 10px 16px; text-align: left; border: 1px solid var(--border); color: var(--primary-light); font-weight: 700; }
+        .cmp-table td { padding: 10px 16px; border: 1px solid var(--border); }
+        .cmp-table tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+
+        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 16px; }
+        .cmd-block { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .cmd-block.wide { grid-column: 1 / -1; }
+        .cmd-block-head { background: #0f172a; border-bottom: 1px solid var(--border); padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--text-dim); display: flex; align-items: center; justify-content: space-between; }
+        .cmd-block-body { padding: 14px; }
+        pre.mongo { font-family: "Cascadia Code","Fira Code",Consolas,monospace; font-size: 12.5px; color: #4ade80; white-space: pre-wrap; word-break: break-word; line-height: 1.7; }
+        .prompt { color: #f59e0b; }
+        .kw     { color: #60a5fa; }
+        .str    { color: #f9a8d4; }
+        .num    { color: #fb923c; }
+        .op     { color: #a78bfa; }
+        .cmt    { color: #4b5563; font-style: italic; }
+
+        .section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--primary-light); padding: 0 4px; display: flex; align-items: center; gap: 10px; }
+        .section-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+        .seq-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .seq-table th { background: #0d131f; color: var(--primary-light); font-weight: 700; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+        .seq-table td { padding: 9px 14px; border: 1px solid var(--border); }
+        .seq-table tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+        .seq-num { background: rgba(16,185,129,.15); color: #34d399; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+
+        .op-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .op-chip { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; min-width: 120px; }
+        .op-chip .op-name { font-family: monospace; font-size: 13px; color: #a78bfa; font-weight: 700; }
+        .op-chip .op-desc { font-size: 11px; color: var(--text-dim); }
+
+        ol.viva-list { list-style: none; display: flex; flex-direction: column; gap: 8px; counter-reset: viva; }
+        .viva-list li { background: var(--code-bg); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 6px; padding: 10px 16px; font-size: 14px; counter-increment: viva; }
+        .viva-list li::before { content: "Q" counter(viva) ". "; color: var(--primary-light); font-weight: 700; }
+
+        .problem-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .problem-list li { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 13.5px; display: flex; gap: 12px; align-items: flex-start; }
+        .prob-num { background: rgba(16,185,129,.15); color: #34d399; border: 1px solid rgba(52,211,153,.3); border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; white-space: nowrap; margin-top: 2px; }
+
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary-light); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
+        .back-link:hover { color: #fff; }
+
+        footer { text-align: center; padding: 24px 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 13px; }
+
+        @media (max-width: 600px) { .cmd-grid { grid-template-columns: 1fr; } .hero h2 { font-size: 20px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <span class="mongo-badge">🍃 MongoDB</span>
+        <h1>Experiment 9 — Working with MongoDB Shell</h1>
+    </div>
+    <nav class="header-links">
+        <a class="portal-btn" href="../index.html">← Portfolio Home</a>
+        <a class="portal-btn" href="https://github.com/jinto-joseph/WEB_TECH_LAB" target="_blank" rel="noopener">GitHub Repo ↗</a>
+    </nav>
+</header>
+
+<div class="page-wrap">
+
+    <a class="back-link" href="../index.html">← Back to Portfolio</a>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-label">Experiment No. 9 · 23CS2049 Web Technology Lab</div>
+        <h2>Working with MongoDB Using Shell Commands</h2>
+        <p>Perform CRUD operations, query filtering, aggregation, and indexing using MongoDB Shell (<code style="color:#34d399;background:rgba(0,0,0,.3);padding:2px 6px;border-radius:4px;">mongosh</code>) on a local MongoDB Community Server.</p>
+        <div class="hero-meta">
+            <div class="hero-meta-item"><span>Student</span>URK24CS1210</div>
+            <div class="hero-meta-item"><span>Date</span>15 October 2026</div>
+            <div class="hero-meta-item"><span>Tool</span>MongoDB Shell (mongosh)</div>
+            <div class="hero-meta-item"><span>Database</span>collegeDB · students</div>
+        </div>
+    </div>
+
+    <!-- Record Table -->
+    <div class="card">
+        <div class="card-head">
+            <h3>📋 Lab Record Details</h3>
+            <span class="badge badge-green">EX 9 RECORD READY</span>
+        </div>
+        <div class="card-body">
+            <table class="record-table">
+                <tr><th>Ex. No.</th><td>9</td></tr>
+                <tr><th>Title</th><td>Working with MongoDB Using Shell Commands</td></tr>
+                <tr><th>Date of Exercise</th><td>15 October 2026</td></tr>
+                <tr>
+                    <th>GitHub Host Link</th>
+                    <td>
+                        <div class="host-link-box">
+                            <span id="exp9LinkDisplay">https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_09/index.html</span>
+                            <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr><th>Software Required</th><td>MongoDB Community Server, MongoDB Shell (mongosh)</td></tr>
+                <tr><th>Aim</th><td>To study MongoDB and perform basic database operations using MongoDB Shell (mongosh), including database and collection creation, document insertion, retrieval, filtering, sorting, updating, deletion, indexing, and simple aggregation.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- MongoDB vs RDBMS -->
+    <div class="card">
+        <div class="card-head"><h3>🗂️ Basic MongoDB Structure — Terminology</h3><span class="badge badge-cyan">CONCEPT</span></div>
+        <div class="card-body">
+            <p style="color:var(--text-dim);font-size:13.5px;margin-bottom:16px;">MongoDB uses its own terminology that maps to familiar relational database concepts.</p>
+            <table class="cmp-table">
+                <thead><tr><th>Relational Database</th><th>MongoDB Equivalent</th></tr></thead>
+                <tbody>
+                    <tr><td>Database</td><td>Database</td></tr>
+                    <tr><td>Table</td><td>Collection</td></tr>
+                    <tr><td>Row</td><td>Document</td></tr>
+                    <tr><td>Column</td><td>Field</td></tr>
+                    <tr><td>Primary Key</td><td><code style="color:#f9a8d4">_id</code></td></tr>
+                </tbody>
+            </table>
+            <p style="color:var(--text-dim);font-size:13px;margin-top:18px;margin-bottom:10px;">Example MongoDB document:</p>
+            <div class="cmd-block">
+                <div class="cmd-block-head"><span>Example Document</span><span class="badge badge-slate">BSON/JSON</span></div>
+                <div class="cmd-block-body">
+<pre class="mongo">{
+    <span class="str">rollno</span>: <span class="num">101</span>,
+    <span class="str">name</span>: <span class="str">"Arun"</span>,
+    <span class="str">department</span>: <span class="str">"CSE"</span>,
+    <span class="str">marks</span>: <span class="num">85</span>
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup -->
+    <div class="section-label">Setup &amp; Database Operations</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>4. Check Existing Databases</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="prompt">test&gt;</span> <span class="kw">show dbs</span></pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Displays all databases on the MongoDB server.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>5. Create / Select Database</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="prompt">test&gt;</span> <span class="kw">use</span> <span class="str">collegeDB</span>
+<span class="cmt">switched to db collegeDB</span></pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">DB created only after data is stored.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>6. Check Current Database</span></div>
+            <div class="cmd-block-body"><pre class="mongo"><span class="prompt">collegeDB&gt;</span> <span class="kw">db</span>
+<span class="cmt">collegeDB</span></pre></div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>7. Create a Collection</span></div>
+            <div class="cmd-block-body"><pre class="mongo"><span class="prompt">collegeDB&gt;</span> db.<span class="kw">createCollection</span>(<span class="str">"students"</span>)
+<span class="cmt">{ ok: 1 }</span></pre></div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>8. View Collections</span></div>
+            <div class="cmd-block-body"><pre class="mongo"><span class="prompt">collegeDB&gt;</span> <span class="kw">show collections</span>
+<span class="cmt">students</span></pre></div>
+        </div>
+    </div>
+
+    <!-- Insert -->
+    <div class="section-label">Inserting Documents</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>9. Insert One Document</span><span class="badge badge-green">insertOne</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="prompt">collegeDB&gt;</span> db.students.<span class="kw">insertOne</span>({
+    <span class="str">rollno</span>: <span class="num">101</span>,
+    <span class="str">name</span>: <span class="str">"Arun"</span>,
+    <span class="str">department</span>: <span class="str">"CSE"</span>,
+    <span class="str">year</span>: <span class="num">3</span>,
+    <span class="str">marks</span>: <span class="num">85</span>
+})</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Auto-generates <code style="color:#f9a8d4">_id</code> if not supplied.</p>
+            </div>
+        </div>
+        <div class="cmd-block wide">
+            <div class="cmd-block-head"><span>10. Insert Multiple Documents</span><span class="badge badge-green">insertMany</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="prompt">collegeDB&gt;</span> db.students.<span class="kw">insertMany</span>([
+    { <span class="str">rollno</span>: <span class="num">102</span>, <span class="str">name</span>: <span class="str">"Priya"</span>,   <span class="str">department</span>: <span class="str">"ECE"</span>, <span class="str">year</span>: <span class="num">3</span>, <span class="str">marks</span>: <span class="num">92</span> },
+    { <span class="str">rollno</span>: <span class="num">103</span>, <span class="str">name</span>: <span class="str">"Karthik"</span>, <span class="str">department</span>: <span class="str">"CSE"</span>, <span class="str">year</span>: <span class="num">2</span>, <span class="str">marks</span>: <span class="num">78</span> },
+    { <span class="str">rollno</span>: <span class="num">104</span>, <span class="str">name</span>: <span class="str">"Meena"</span>,   <span class="str">department</span>: <span class="str">"EEE"</span>, <span class="str">year</span>: <span class="num">3</span>, <span class="str">marks</span>: <span class="num">88</span> },
+    { <span class="str">rollno</span>: <span class="num">105</span>, <span class="str">name</span>: <span class="str">"Rahul"</span>,   <span class="str">department</span>: <span class="str">"CSE"</span>, <span class="str">year</span>: <span class="num">4</span>, <span class="str">marks</span>: <span class="num">67</span> }
+])</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Read -->
+    <div class="section-label">Read &amp; Query Operations</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>11. Display All Documents</span><span class="badge badge-cyan">find</span></div>
+            <div class="cmd-block-body"><pre class="mongo"><span class="prompt">collegeDB&gt;</span> db.students.<span class="kw">find</span>()</pre></div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>12. Find One Document</span><span class="badge badge-cyan">findOne</span></div>
+            <div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">findOne</span>({ <span class="str">rollno</span>: <span class="num">103</span> })</pre></div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>13. Search Using Condition</span></div>
+            <div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">find</span>({ <span class="str">department</span>: <span class="str">"CSE"</span> })</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Object inside find() = query filter.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operators -->
+    <div class="card">
+        <div class="card-head"><h3>📊 14. Comparison Operators</h3><span class="badge badge-amber">OPERATORS</span></div>
+        <div class="card-body">
+            <div class="op-grid" style="margin-bottom:18px;">
+                <div class="op-chip"><span class="op-name">$gt</span><span class="op-desc">Greater than</span></div>
+                <div class="op-chip"><span class="op-name">$gte</span><span class="op-desc">Greater than or equal</span></div>
+                <div class="op-chip"><span class="op-name">$lt</span><span class="op-desc">Less than</span></div>
+                <div class="op-chip"><span class="op-name">$lte</span><span class="op-desc">Less than or equal</span></div>
+                <div class="op-chip"><span class="op-name">$eq</span><span class="op-desc">Equal</span></div>
+                <div class="op-chip"><span class="op-name">$ne</span><span class="op-desc">Not equal</span></div>
+                <div class="op-chip"><span class="op-name">$in</span><span class="op-desc">Matches array values</span></div>
+                <div class="op-chip"><span class="op-name">$nin</span><span class="op-desc">Does not match array</span></div>
+            </div>
+            <div class="cmd-grid">
+                <div class="cmd-block"><div class="cmd-block-head"><span>marks &gt; 80</span></div><div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">find</span>({ <span class="str">marks</span>: { <span class="op">$gt</span>: <span class="num">80</span> } })</pre></div></div>
+                <div class="cmd-block"><div class="cmd-block-head"><span>marks &gt;= 80</span></div><div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">find</span>({ <span class="str">marks</span>: { <span class="op">$gte</span>: <span class="num">80</span> } })</pre></div></div>
+                <div class="cmd-block"><div class="cmd-block-head"><span>marks &lt; 80</span></div><div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">find</span>({ <span class="str">marks</span>: { <span class="op">$lt</span>: <span class="num">80</span> } })</pre></div></div>
+                <div class="cmd-block"><div class="cmd-block-head"><span>marks ≠ 85</span></div><div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">find</span>({ <span class="str">marks</span>: { <span class="op">$ne</span>: <span class="num">85</span> } })</pre></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logical, Projection, Sort -->
+    <div class="section-label">Logical Queries, Projection &amp; Sorting</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>15. AND Condition (implicit)</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">find</span>({
+    <span class="str">department</span>: <span class="str">"CSE"</span>,
+    <span class="str">marks</span>: { <span class="op">$gt</span>: <span class="num">75</span> }
+})</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Multiple fields in same filter = implicit AND.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>16. OR Condition</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">find</span>({
+    <span class="op">$or</span>: [
+        { <span class="str">department</span>: <span class="str">"CSE"</span> },
+        { <span class="str">department</span>: <span class="str">"ECE"</span> }
+    ]
+})</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>17. Projection</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">find</span>(
+    {},
+    { <span class="str">name</span>: <span class="num">1</span>, <span class="str">marks</span>: <span class="num">1</span>, <span class="str">_id</span>: <span class="num">0</span> }
+)</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;"><code style="color:#fb923c">1</code> includes · <code style="color:#fb923c">0</code> excludes field.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>18. Sort Documents</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="cmt">// Ascending</span>
+db.students.<span class="kw">find</span>().<span class="kw">sort</span>({ <span class="str">marks</span>: <span class="num">1</span> })
+<span class="cmt">// Descending</span>
+db.students.<span class="kw">find</span>().<span class="kw">sort</span>({ <span class="str">marks</span>: <span class="num">-1</span> })</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>19. Limit Results</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">find</span>()
+    .<span class="kw">sort</span>({ <span class="str">marks</span>: <span class="num">-1</span> })
+    .<span class="kw">limit</span>(<span class="num">3</span>)</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Top 3 scorers.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>20. Count Documents</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="cmt">// All</span>
+db.students.<span class="kw">countDocuments</span>({})
+<span class="cmt">// CSE only</span>
+db.students.<span class="kw">countDocuments</span>(
+    { <span class="str">department</span>: <span class="str">"CSE"</span> }
+)</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update -->
+    <div class="section-label">Update Operations</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>21. Update One Document</span><span class="badge badge-amber">updateOne</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">updateOne</span>(
+    { <span class="str">rollno</span>: <span class="num">101</span> },
+    { <span class="op">$set</span>: { <span class="str">marks</span>: <span class="num">90</span> } }
+)</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>22. Update Multiple Documents</span><span class="badge badge-amber">updateMany</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">updateMany</span>(
+    { <span class="str">department</span>: <span class="str">"CSE"</span> },
+    { <span class="op">$set</span>: { <span class="str">status</span>: <span class="str">"Active"</span> } }
+)</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Adds <code style="color:#4ade80">status</code> field for all CSE students.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>23. Increment Numeric Value</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">updateOne</span>(
+    { <span class="str">rollno</span>: <span class="num">103</span> },
+    { <span class="op">$inc</span>: { <span class="str">marks</span>: <span class="num">5</span> } }
+)</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;"><code style="color:#a78bfa">$inc</code> increases the value by the given amount.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete -->
+    <div class="section-label">Delete &amp; Distinct Operations</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>24. Delete One Document</span><span class="badge badge-slate">deleteOne</span></div>
+            <div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">deleteOne</span>({ <span class="str">rollno</span>: <span class="num">105</span> })</pre></div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>25. Delete Multiple Documents</span><span class="badge badge-slate">deleteMany</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">deleteMany</span>(
+    { <span class="str">marks</span>: { <span class="op">$lt</span>: <span class="num">70</span> } }
+)</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">⚠️ Run only after all queries that need this data.</p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>26. Distinct Values</span></div>
+            <div class="cmd-block-body"><pre class="mongo">db.students.<span class="kw">distinct</span>(<span class="str">"department"</span>)
+<span class="cmt">// [ "CSE", "ECE", "EEE" ]</span></pre></div>
+        </div>
+    </div>
+
+    <!-- Aggregation -->
+    <div class="section-label">Aggregation Pipeline</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>27. Dept-wise Average Marks</span><span class="badge badge-cyan">$avg</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">aggregate</span>([
+    {
+        <span class="op">$group</span>: {
+            <span class="str">_id</span>: <span class="str">"$department"</span>,
+            <span class="str">averageMarks</span>: { <span class="op">$avg</span>: <span class="str">"$marks"</span> }
+        }
+    }
+])</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>28. Maximum Marks</span><span class="badge badge-cyan">$max</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">aggregate</span>([
+    {
+        <span class="op">$group</span>: {
+            <span class="str">_id</span>: <span class="kw">null</span>,
+            <span class="str">maximumMarks</span>: { <span class="op">$max</span>: <span class="str">"$marks"</span> }
+        }
+    }
+])</pre>
+                <p style="color:var(--text-dim);font-size:12px;margin-top:8px;">Also: <code style="color:#a78bfa">$min</code> · <code style="color:#a78bfa">$avg</code> · <code style="color:#a78bfa">$sum</code></p>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>29. Dept-wise Student Count</span><span class="badge badge-cyan">$sum</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">aggregate</span>([
+    {
+        <span class="op">$group</span>: {
+            <span class="str">_id</span>: <span class="str">"$department"</span>,
+            <span class="str">totalStudents</span>: { <span class="op">$sum</span>: <span class="num">1</span> }
+        }
+    }
+])</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indexing & Cleanup -->
+    <div class="section-label">Indexing, Utility &amp; Cleanup</div>
+    <div class="cmd-grid">
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>30. Create &amp; View Index</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="cmt">// Create index</span>
+db.students.<span class="kw">createIndex</span>({ <span class="str">rollno</span>: <span class="num">1</span> })
+<span class="cmt">// View indexes</span>
+db.students.<span class="kw">getIndexes</span>()</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>31. Shell Help</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo">db.students.<span class="kw">help</span>()
+db.students.insertOne.<span class="kw">help</span>()</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>32. Drop Collection</span><span class="badge badge-red">⚠️ Destructive</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="cmt">// Deletes collection + all documents</span>
+db.students.<span class="kw">drop</span>()</pre>
+            </div>
+        </div>
+        <div class="cmd-block">
+            <div class="cmd-block-head"><span>33. Drop Database</span><span class="badge badge-red">⚠️ Destructive</span></div>
+            <div class="cmd-block-body">
+<pre class="mongo"><span class="cmt">// Confirm current DB first</span>
+db
+<span class="cmt">// Then drop</span>
+db.<span class="kw">dropDatabase</span>()</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lab Sequence -->
+    <div class="card">
+        <div class="card-head"><h3>📋 34. Recommended Student Lab Sequence</h3><span class="badge badge-cyan">STEP-BY-STEP</span></div>
+        <div class="card-body">
+            <table class="seq-table">
+                <thead><tr><th>#</th><th>Activity</th><th>Command</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="seq-num">1</span></td><td>Start shell</td><td><code style="color:#4ade80">mongosh</code></td></tr>
+                    <tr><td><span class="seq-num">2</span></td><td>View databases</td><td><code style="color:#4ade80">show dbs</code></td></tr>
+                    <tr><td><span class="seq-num">3</span></td><td>Select database</td><td><code style="color:#4ade80">use collegeDB</code></td></tr>
+                    <tr><td><span class="seq-num">4</span></td><td>Create collection</td><td><code style="color:#4ade80">db.createCollection("students")</code></td></tr>
+                    <tr><td><span class="seq-num">5</span></td><td>View collections</td><td><code style="color:#4ade80">show collections</code></td></tr>
+                    <tr><td><span class="seq-num">6</span></td><td>Insert one record</td><td><code style="color:#4ade80">insertOne()</code></td></tr>
+                    <tr><td><span class="seq-num">7</span></td><td>Insert multiple records</td><td><code style="color:#4ade80">insertMany()</code></td></tr>
+                    <tr><td><span class="seq-num">8</span></td><td>Display records</td><td><code style="color:#4ade80">find()</code></td></tr>
+                    <tr><td><span class="seq-num">9</span></td><td>Search one record</td><td><code style="color:#4ade80">findOne()</code></td></tr>
+                    <tr><td><span class="seq-num">10</span></td><td>Conditional search</td><td><code style="color:#4ade80">$gt, $lt, $gte, $lte</code></td></tr>
+                    <tr><td><span class="seq-num">11</span></td><td>Logical queries</td><td><code style="color:#4ade80">$and, $or</code></td></tr>
+                    <tr><td><span class="seq-num">12</span></td><td>Projection</td><td><code style="color:#4ade80">find({}, {...})</code></td></tr>
+                    <tr><td><span class="seq-num">13</span></td><td>Sorting</td><td><code style="color:#4ade80">sort()</code></td></tr>
+                    <tr><td><span class="seq-num">14</span></td><td>Limit output</td><td><code style="color:#4ade80">limit()</code></td></tr>
+                    <tr><td><span class="seq-num">15</span></td><td>Count records</td><td><code style="color:#4ade80">countDocuments()</code></td></tr>
+                    <tr><td><span class="seq-num">16</span></td><td>Modify one record</td><td><code style="color:#4ade80">updateOne()</code></td></tr>
+                    <tr><td><span class="seq-num">17</span></td><td>Modify several records</td><td><code style="color:#4ade80">updateMany()</code></td></tr>
+                    <tr><td><span class="seq-num">18</span></td><td>Delete record</td><td><code style="color:#4ade80">deleteOne()</code></td></tr>
+                    <tr><td><span class="seq-num">19</span></td><td>Distinct values</td><td><code style="color:#4ade80">distinct()</code></td></tr>
+                    <tr><td><span class="seq-num">20</span></td><td>Aggregation</td><td><code style="color:#4ade80">aggregate()</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Practice Problem -->
+    <div class="card">
+        <div class="card-head"><h3>🎯 35. Student Practice Problem</h3><span class="badge badge-amber">EXERCISE</span></div>
+        <div class="card-body">
+            <p style="color:var(--text-dim);font-size:13.5px;margin-bottom:14px;">Create <code style="color:#34d399">collegeDB</code> → <code style="color:#34d399">students</code> collection. Fields: <code style="color:#f9a8d4">rollno · name · department · year · marks · city</code>. Perform:</p>
+            <ul class="problem-list">
+                <li><span class="prob-num">P1</span>Insert at least 10 student documents.</li>
+                <li><span class="prob-num">P2</span>Display all students.</li>
+                <li><span class="prob-num">P3</span>Display students belonging to CSE.</li>
+                <li><span class="prob-num">P4</span>Find students having marks greater than 80.</li>
+                <li><span class="prob-num">P5</span>Display only student name and marks (projection).</li>
+                <li><span class="prob-num">P6</span>Find students belonging to CSE and third year.</li>
+                <li><span class="prob-num">P7</span>Find students belonging to CSE or ECE.</li>
+                <li><span class="prob-num">P8</span>Sort students based on marks.</li>
+                <li><span class="prob-num">P9</span>Display the top three students based on marks.</li>
+                <li><span class="prob-num">P10</span>Count the number of CSE students.</li>
+                <li><span class="prob-num">P11</span>Update the marks of one student.</li>
+                <li><span class="prob-num">P12</span>Add a <code style="color:#4ade80">status</code> field to all CSE students.</li>
+                <li><span class="prob-num">P13</span>Delete a student using roll number.</li>
+                <li><span class="prob-num">P14</span>Display the distinct departments.</li>
+                <li><span class="prob-num">P15</span>Calculate department-wise average marks using aggregation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Observation -->
+    <div class="card">
+        <div class="card-head"><h3>🔬 36. Observation</h3></div>
+        <div class="card-body">
+            <p style="color:var(--text-dim);font-size:14px;margin-bottom:14px;">MongoDB stores data as documents inside collections. Using <code style="color:#34d399">mongosh</code>, CRUD and query operations were performed successfully using:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <span class="badge badge-green">insertOne()</span>
+                <span class="badge badge-green">insertMany()</span>
+                <span class="badge badge-cyan">find()</span>
+                <span class="badge badge-cyan">findOne()</span>
+                <span class="badge badge-amber">updateOne()</span>
+                <span class="badge badge-amber">updateMany()</span>
+                <span class="badge badge-slate">deleteOne()</span>
+                <span class="badge badge-slate">deleteMany()</span>
+                <span class="badge badge-cyan">aggregate()</span>
+                <span class="badge badge-green">createIndex()</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Viva -->
+    <div class="card">
+        <div class="card-head"><h3>❓ 37. Suggested Viva Questions</h3><span class="badge badge-amber">VIVA PREP</span></div>
+        <div class="card-body">
+            <ol class="viva-list">
+                <li>What is the difference between a MongoDB collection and an RDBMS table?</li>
+                <li>What is a MongoDB document?</li>
+                <li>What is the purpose of the <code style="color:#f9a8d4">_id</code> field?</li>
+                <li>What is the difference between <code style="color:#60a5fa">find()</code> and <code style="color:#60a5fa">findOne()</code>?</li>
+                <li>What do <code style="color:#a78bfa">$gt</code>, <code style="color:#a78bfa">$lt</code>, <code style="color:#a78bfa">$gte</code>, and <code style="color:#a78bfa">$lte</code> mean?</li>
+                <li>What is projection in MongoDB?</li>
+                <li>What is the difference between <code style="color:#fbbf24">updateOne()</code> and <code style="color:#fbbf24">updateMany()</code>?</li>
+                <li>What does the <code style="color:#a78bfa">$set</code> operator do?</li>
+                <li>What does the <code style="color:#a78bfa">$inc</code> operator do?</li>
+                <li>What is an aggregation pipeline?</li>
+                <li>Why are indexes used in MongoDB?</li>
+                <li>What is the difference between <code style="color:#94a3b8">deleteOne()</code> and <code style="color:#94a3b8">deleteMany()</code>?</li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+<footer>23CS2049 — Web Technology Lab · Experiment 9 · Register No: URK24CS1210 · GitHub: jinto-joseph/WEB_TECH_LAB</footer>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const el = document.getElementById("exp9LinkDisplay");
+        if (el && window.location.hostname.includes("github.io")) {
+            el.innerText = window.location.origin + "/WEB_TECH_LAB/Exp_09/index.html";
+        }
+    });
+    function copyLink() {
+        const text = document.getElementById("exp9LinkDisplay").innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copied link for record sheet!\n\n" + text);
+        }).catch(() => { prompt("Copy this link:", text); });
+    }
+</script>
+</body>
+</html>
