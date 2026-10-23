@@ -28,6 +28,8 @@
 - **⚡ Experiment 7 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/11_09_2k26_Exp_7/index.html`
 - **⚛️ Experiment 8 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/index.html`
 - **🚀 Experiment 8 Standalone React App:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/react-ui-lab/index.html`
+- **📝 Experiment 10 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_10/home.html`
+- **🗃️ Experiment 11 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_11/index.html`
 
 ---
 
@@ -43,6 +45,9 @@
 | **06** | **JavaScript Timer Functions & Arrays** | Timers (setTimeout, setInterval), Date methods, Class & Object Arrays | Completed | [📁 21_Aug_2026_6](./21_Aug_2026_6/) | [🔗 Exp 6 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/21_Aug_2026_6/index.html) |
 | **07** | **Working with jQuery** | jQuery DOM selectors, animations, dynamic event bindings | Completed | [📁 11_09_2k26_Exp_7](./11_09_2k26_Exp_7/) | [🔗 Exp 7 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/11_09_2k26_Exp_7/index.html) |
 | **08** | **Building Component-Based UI With React** | React 19, JSX, useState hooks, component hierarchy, light/dark mode | Completed | [📁 Exp_08](./Exp_08/) | [🔗 Exp 8 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/index.html) |
+| **09** | **Working with MongoDB Using Shell Commands** | MongoDB databases, collections, CRUD, indexing, aggregation | Completed | [📁 Exp_09](./Exp_09/) | [🔗 Exp 9 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_09/index.html) |
+| **10** | **Node.js Server-Side Form Processing with MongoDB** | Node.js HTTP server, form validation, MongoDB document insertion | Completed | [📁 Exp_10](./Exp_10/) | [🔗 Exp 10 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_10/home.html) |
+| **11** | **Database Integration in NodeJS using MongoDB** | Express.js, Mongoose, REST API, student CRUD operations | Completed | [📁 Exp_11](./Exp_11/) | [🔗 Exp 11 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_11/index.html) |
 
 ---
 
