@@ -1,0 +1,26 @@
+{
+  "name": "experiment-11-nodejs-mongodb",
+  "version": "1.0.0",
+  "description": "Experiment 11 - Database Integration in NodeJS Application using MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "crud"
+  ],
+  "author": "Jinto Joseph",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.3",
+    "mongoose": "^8.24.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
