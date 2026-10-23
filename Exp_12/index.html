@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 12 — Full Stack Student Management</title>
+    <style>
+        :root { --bg: #0b1220; --card: #172033; --border: #2a3a55; --text: #eef6ff; --muted: #a8b8cc; --accent: #22d3ee; --green: #34d399; }
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 32px 18px; font: 16px/1.6 system-ui, sans-serif; color: var(--text); background: var(--bg); }
+        main { max-width: 900px; margin: auto; }
+        .hero, section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 20px; }
+        .hero { background: linear-gradient(135deg, #172033, #164e63); }
+        h1 { margin: 0 0 8px; font-size: clamp(1.7rem, 4vw, 2.5rem); }
+        h2 { color: var(--accent); margin-top: 0; }
+        p, li { color: var(--muted); }
+        code { color: #a7f3d0; background: #0d1728; padding: 2px 6px; border-radius: 4px; }
+        .architecture { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+        .layer { padding: 16px; border: 1px solid var(--border); border-radius: 9px; text-align: center; }
+        .layer strong { display: block; color: var(--text); margin-bottom: 4px; }
+        a { color: var(--accent); }
+        .button { display: inline-block; margin: 6px 8px 0 0; padding: 10px 16px; border-radius: 8px; color: #06202b; background: var(--accent); text-decoration: none; font-weight: 700; }
+        .button.secondary { background: var(--green); }
+        footer { color: var(--muted); text-align: center; padding: 12px; }
+    </style>
+</head>
+<body>
+<main>
+    <header class="hero">
+        <h1>Experiment No. 12 — Full Stack Web Application</h1>
+        <p>Student Management System using ReactJS, NodeJS, ExpressJS and MongoDB</p>
+        <a class="button" href="./FullStackStudentApp/frontend/">Open React Frontend</a>
+        <a class="button secondary" href="../index.html">Back to Lab Portal</a>
+    </header>
+
+    <section>
+        <h2>Aim</h2>
+        <p>To design and develop a full-stack student management application with a React frontend, an Express REST API, and MongoDB storage, and to perform Create, Read, Update and Delete operations.</p>
+    </section>
+
+    <section>
+        <h2>Application Architecture</h2>
+        <div class="architecture">
+            <div class="layer"><strong>ReactJS</strong>Student form and records table</div>
+            <div class="layer"><strong>Axios</strong>HTTP communication</div>
+            <div class="layer"><strong>ExpressJS</strong>REST API endpoints</div>
+            <div class="layer"><strong>MongoDB</strong>Persistent student documents</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>CRUD API</h2>
+        <ul>
+            <li><code>POST /students</code> creates a student.</li>
+            <li><code>GET /students</code> lists all students.</li>
+            <li><code>PUT /students/:id</code> updates a student.</li>
+            <li><code>DELETE /students/:id</code> removes a student.</li>
+        </ul>
+        <p>The API and MongoDB connection run locally. Follow the setup instructions in the project README.</p>
+        <a href="./README.md">Read the experiment instructions</a>
+    </section>
+
+    <footer>23CS2049 Web Technology Lab | Register No: URK24CS1210</footer>
+</main>
+</body>
+</html>

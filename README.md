@@ -30,6 +30,7 @@
 - **🚀 Experiment 8 Standalone React App:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_08/react-ui-lab/index.html`
 - **📝 Experiment 10 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_10/home.html`
 - **🗃️ Experiment 11 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_11/index.html`
+- **🔗 Experiment 12 Record Host Link:** `https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_12/index.html`
 
 ---
 
@@ -48,6 +49,7 @@
 | **09** | **Working with MongoDB Using Shell Commands** | MongoDB databases, collections, CRUD, indexing, aggregation | Completed | [📁 Exp_09](./Exp_09/) | [🔗 Exp 9 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_09/index.html) |
 | **10** | **Node.js Server-Side Form Processing with MongoDB** | Node.js HTTP server, form validation, MongoDB document insertion | Completed | [📁 Exp_10](./Exp_10/) | [🔗 Exp 10 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_10/home.html) |
 | **11** | **Database Integration in NodeJS using MongoDB** | Express.js, Mongoose, REST API, student CRUD operations | Completed | [📁 Exp_11](./Exp_11/) | [🔗 Exp 11 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_11/index.html) |
+| **12** | **Full Stack Web Application Development** | ReactJS, NodeJS, ExpressJS, MongoDB, Mongoose, Axios, CRUD | Completed | [📁 Exp_12](./Exp_12/) | [🔗 Exp 12 Site](https://jinto-joseph.github.io/WEB_TECH_LAB/Exp_12/index.html) |
 
 ---
 
